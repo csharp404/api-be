@@ -11,7 +11,7 @@ namespace HISApp.DTOs
         public string LastName { get; set; }
         public int? age { get; set; }
         public int? departmentid { get; set; }
-        public DateTime? hiredate { get; set; } = DateTime.Now;
+        public DateTime hiredate { get; set; } = DateTime.Now;
         public string? experience { get; set; }
         public string? phonenumber { get; set; }
         public int? gender { get; set; }
@@ -19,7 +19,7 @@ namespace HISApp.DTOs
         public int? cityid { get; set; }
         public int? areaid { get; set; }
         public string Password { get; set; }
-        public string ConfiemPassword { get; set; }
+        public string ConfirmPassword { get; set; }
         public int Role { get; set; }
 
 

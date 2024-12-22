@@ -28,7 +28,7 @@ namespace HISApp.Controllers
        
         [HttpPut]
         [Route("ChangePWD")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult ChangePassword(ChangePasswordDTO pwds)
         {
             ChangePasswordUserCommand usr = new ChangePasswordUserCommand(pwds.OldPassword, pwds.NewPassword);

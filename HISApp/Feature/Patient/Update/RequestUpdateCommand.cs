@@ -16,11 +16,11 @@ public class RequestUpdateCommandHandler(MyDbContext context):IRequestHandler<Re
             return new ResponseUpdateCommand(0);
         }
 
-        data.BloodType = request.Patient.BloodType;
+        data.BloodType = request.Patient.bloodType;
         data.Age = request.Patient.age;
-        data.FirstName = request.Patient.FirstName;
-        data.LastName = request.Patient.LastName;
-        data.PCD  = request.Patient.PCD;
+        data.FirstName = request.Patient.firstName;
+        data.LastName = request.Patient.lastName;
+        data.PCD  = request.Patient.pcd;
         await context.SaveChangesAsync(cancellationToken);
         return new ResponseUpdateCommand(1);
     }

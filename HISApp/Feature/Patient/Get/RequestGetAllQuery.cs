@@ -10,9 +10,11 @@ public record RequestGetAllQuery():IRequest<ResponseGetAllQuery>;
 
 public class RequestGetAllQueryHandler(MyDbContext context) : IRequestHandler<RequestGetAllQuery, ResponseGetAllQuery>
 {
+    private readonly MyDbContext _context = context;
+
     public async Task<ResponseGetAllQuery> Handle(RequestGetAllQuery request, CancellationToken cancellationToken)
     {
-        var data = await context.Patients.ToListAsync(cancellationToken);
+        var data = await _context.Patients.ToListAsync();
         return new ResponseGetAllQuery(data);
 
 

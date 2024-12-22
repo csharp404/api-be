@@ -20,12 +20,8 @@ public class RequestDoctorsQueryHandler(MyDbContext context, UserManager<Domain.
             user.DepartmentId = request.usr.departmentid;
             user.Experience = request.usr.experience;
             user.PhoneNumber = request.usr.phonenumber;
-            user.Gender = request.usr.gender=="Male"?true:false;
+            user.Gender = request.usr.gender;
             user.Age = request.usr.age;
-           
-           
-
-
             var data =await  context.Addresses.Where(x => x.UserId == user.Id).FirstOrDefaultAsync();
             if (data != null)
             {

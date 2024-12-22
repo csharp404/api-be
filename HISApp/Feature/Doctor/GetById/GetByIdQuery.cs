@@ -20,22 +20,26 @@ using Microsoft.EntityFrameworkCore;
            
             var data = await _userManager.GetUsersInRoleAsync("Doctor");
             var doctor = data.FirstOrDefault(x => x.Id == request.id);
-           
+            var address = context.Addresses.FirstOrDefault(x=>x.UserId==request.id);
             var department = context.Departments.Find(doctor.DepartmentId);
             var DoctorDetails =  new DetailsDto
             {
-                Id = doctor.Id,
-                Name = $"Dr.{doctor.FirstName} {doctor.LastName}",
-                Department = department.Name,
-                Age =  doctor.Age,
-                Email = doctor.Email,
-                Experience = doctor.Experience,
-                Gender = (doctor.Gender==true ? "Male" : "Female"),
-                HireDate = (DateTime)doctor.HireDate,
-                PhoneNumber = doctor.PhoneNumber
+                id = doctor.Id,
+                FirstName = doctor.FirstName,
+                LastName = doctor.LastName,
+                departmentid = department.Id,
+                age =  doctor.Age,
+                email = doctor.Email,
+                experience = doctor.Experience,
+                gender = doctor.Gender,
+                hiredate = doctor.HireDate.ToString(),
+                phonenumber = doctor.PhoneNumber,
+                Role = 2,
+                areaid = address.AreaId,
+                cityid = address.CityId
                
             };
-
+            
             return new ResponseDoctorByIdQuery(DoctorDetails);
         }
     }

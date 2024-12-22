@@ -9,7 +9,7 @@ namespace HISApp.Domain
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int? Age { get; set; }
-        public DateTime? HireDate { get; set; }
+        public DateTime? HireDate { get; set; } = DateTime.Now;
         public bool? Gender { get; set; }
         [InverseProperty(nameof(Address.User))]
         [ForeignKey(nameof(AddressId))]

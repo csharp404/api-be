@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HISApp.Migrations
 {
     /// <inheritdoc />
-    public partial class addsometables01 : Migration
+    public partial class editPatientTable05 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,15 +52,18 @@ namespace HISApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Logistics",
+                name: "Drugs",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QTY = table.Column<int>(type: "int", nullable: false),
+                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Logistics", x => x.Id);
+                    table.PrimaryKey("PK_Drugs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -146,43 +149,27 @@ namespace HISApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Drugs",
+                name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RequestedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     QTY = table.Column<int>(type: "int", nullable: false),
-                    LogisticsId = table.Column<int>(type: "int", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DrugId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Drugs", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Drugs_Logistics_LogisticsId",
-                        column: x => x.LogisticsId,
-                        principalTable: "Logistics",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MedicalSupplies",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QTY = table.Column<int>(type: "int", nullable: false),
-                    LogisticsId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MedicalSupplies", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MedicalSupplies_Logistics_LogisticsId",
-                        column: x => x.LogisticsId,
-                        principalTable: "Logistics",
-                        principalColumn: "Id");
+                        name: "FK_Orders_Drugs_DrugId",
+                        column: x => x.DrugId,
+                        principalTable: "Drugs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -299,26 +286,25 @@ namespace HISApp.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Gender = table.Column<bool>(type: "bit", nullable: false),
-                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LegalGaurdainPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LegalGaurdainName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BloodType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdmissionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DepartmentId = table.Column<int>(type: "int", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AreaId = table.Column<int>(type: "int", nullable: false),
+                    CityId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     PCD = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Patients_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Patients_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Patients_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 });
@@ -384,8 +370,8 @@ namespace HISApp.Migrations
                     Medication = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Dosage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Instructions = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PatientId = table.Column<int>(type: "int", nullable: false)
+                    PatientId = table.Column<int>(type: "int", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -507,11 +493,6 @@ namespace HISApp.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Drugs_LogisticsId",
-                table: "Drugs",
-                column: "LogisticsId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MedicalRecords_DepartmentId",
                 table: "MedicalRecords",
                 column: "DepartmentId");
@@ -522,19 +503,14 @@ namespace HISApp.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MedicalSupplies_LogisticsId",
-                table: "MedicalSupplies",
-                column: "LogisticsId");
+                name: "IX_Orders_DrugId",
+                table: "Orders",
+                column: "DrugId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Patients_AddressId",
+                name: "IX_Patients_UserId1",
                 table: "Patients",
-                column: "AddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Patients_UserId",
-                table: "Patients",
-                column: "UserId");
+                column: "UserId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Prescriptions_PatientId",
@@ -555,6 +531,9 @@ namespace HISApp.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Addresses");
+
             migrationBuilder.DropTable(
                 name: "Areas");
 
@@ -577,13 +556,10 @@ namespace HISApp.Migrations
                 name: "Diagnosis");
 
             migrationBuilder.DropTable(
-                name: "Drugs");
-
-            migrationBuilder.DropTable(
                 name: "MedicalRecords");
 
             migrationBuilder.DropTable(
-                name: "MedicalSupplies");
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Prescriptions");
@@ -601,13 +577,10 @@ namespace HISApp.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Logistics");
+                name: "Drugs");
 
             migrationBuilder.DropTable(
                 name: "Patients");
-
-            migrationBuilder.DropTable(
-                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

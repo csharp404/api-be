@@ -19,8 +19,7 @@ namespace HISApp.DTOs
             var add = new Address()
             {
                 AreaId = user.areaid,
-                CityId = user.cityid,
-
+                CityId = user.cityid
             };
             User usr = new()
             {
@@ -33,8 +32,9 @@ namespace HISApp.DTOs
                 Gender = user.gender == 1 ? true : false,
                 DepartmentId = user.departmentid,
                 Experience = user.experience,
-                Address = add
-
+                Address = add,
+                HireDate = user.hiredate,
+                AddressId = add.Id
             };
 
             string role = GetRoleName(user.Role);

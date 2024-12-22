@@ -12,5 +12,7 @@ namespace HISApp.Domain
         [ForeignKey(nameof(UserId))]
         public string? UserId  { set; get; } 
         public User? User { set; get; }
+
+
     }
 }

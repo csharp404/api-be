@@ -19,57 +19,57 @@ namespace HISApp.Controllers
 
         [HttpPost]
         [Route("Create")]
-        [Authorize(Roles = "Management Staff")]
+        //[Authorize(Roles = "Management Staff")]
         public async Task<IActionResult> Create(PatientsDto usr)
         {
             RequestCreateCommand user = new RequestCreateCommand(usr);
 
-            var result = sender.Send(user);
+            var result = await sender.Send(user);
 
             return Ok(result);
         }
         [HttpGet]
         [Route("Get")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetAll()
         {
             RequestGetAllQuery user = new RequestGetAllQuery();
-            var result = sender.Send(user);
+            var result = await sender.Send(user);
             return Ok(result);
         }
         [HttpDelete]
         [Route("Delete/{id}")]
-        [Authorize(Roles = "Management Staff")]
+        //[Authorize(Roles = "Management Staff")]
 
         public async Task<IActionResult> Delete(int id)
         {
             RequestDeleteCommand user = new RequestDeleteCommand(id);
 
-            var result = sender.Send(user);
+            var result = await sender.Send(user);
 
             return Ok(result);
         }
         [HttpGet]
         [Route("GetById/{id}")]
-        [Authorize]
+        //[Authorize]
 
         public async Task<IActionResult> GetById(int id)
         {
             RequestGetByIdQuery user = new RequestGetByIdQuery(id);
 
-            var result = sender.Send(user);
+            var result = await sender.Send(user);
 
             return Ok(result);
         }
 
         [HttpPut]
         [Route("Update/{id}")]
-        [Authorize(Roles = "Management Staff")]
+        //[Authorize(Roles = "Management Staff")]
         public async Task<IActionResult> Update(int id,[FromBody] PatientsDto pate)
         {
             RequestUpdateCommand user = new RequestUpdateCommand(id,pate);
 
-            var result = sender.Send(user);
+            var result = await sender.Send(user);
 
             return Ok(result);
         }

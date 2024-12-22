@@ -13,11 +13,19 @@ namespace HISApp.Controllers
     [ApiController]
     public class GenericController (MyDbContext context): ControllerBase
     {
+        [HttpGet]
+        [Route("Departments")]
+        //[Authorize(Roles = "Admin,Management Staff")]
+        public async Task<IActionResult> GetDapartments()
+        {
+            var data = await context.Departments.ToListAsync();
+            return Ok(data);
+        }
         #region Address
 
         [HttpGet]
         [Route("Cities")]
-        [Authorize(Roles = "Admin,Management Staff")]
+        //[Authorize(Roles = "Admin,Management Staff")]
         public async Task<IActionResult> GetAllCities()
         {
             var data = await context.Cities.ToListAsync();
@@ -25,7 +33,7 @@ namespace HISApp.Controllers
         }
         [HttpGet]
         [Route("Areas/{CityId:int}")]
-        [Authorize(Roles = "Admin,Management Staff")]
+        //[Authorize(Roles = "Admin,Management Staff")]
 
         public async Task<IActionResult> GetAllAreas(int CityId)
         {
@@ -38,7 +46,7 @@ namespace HISApp.Controllers
         #region Prescription
         [HttpGet]
         [Route("Precription")]
-        [Authorize(Roles = "Admin,Doctor,Nurse")]
+        //[Authorize(Roles = "Admin,Doctor,Nurse")]
 
         public async Task<IActionResult> getPrescription(int id)
         {
@@ -48,7 +56,7 @@ namespace HISApp.Controllers
         }
         [HttpGet]
         [Route("AllPrecription")]
-        [Authorize(Roles = "Admin,Doctor,Nurse")]
+        //[Authorize(Roles = "Admin,Doctor,Nurse")]
 
         public async Task<IActionResult> GetAllPrescription(int id)
         {
@@ -57,12 +65,18 @@ namespace HISApp.Controllers
         }
         [HttpPost]
         [Route("Create- Precription")]
-        [Authorize(Roles = "Doctor")]
+        //[Authorize(Roles = "Doctor")]
 
-        public async Task<IActionResult> CreatePrescription(Prescription pres)
+        public async Task<IActionResult> CreatePrescription(prescriptionDTO pres)
         {
-
-            context.Prescriptions.Add(pres);
+            var press = new Prescription()
+            {
+                Dosage = pres.Dosage,
+                Instructions = pres.Instructions,
+                Medication = pres.Medication,
+                PatientId = pres.PatientId
+            };
+            context.Prescriptions.Add(press);
            await context.SaveChangesAsync();
            return Ok();
         }
@@ -73,7 +87,7 @@ namespace HISApp.Controllers
         #region VitalSigns
         [HttpGet]
         [Route("VitalSigns")]
-        [Authorize(Roles = "Admin,Doctor,Nurse")]
+        //[Authorize(Roles = "Admin,Doctor,Nurse")]
         public async Task<IActionResult> getVitalSigns(int id)
         {
             var data = context.Patients.Include(x => x.VitalSigns).First(x=>x.Id==id);
@@ -91,7 +105,7 @@ namespace HISApp.Controllers
         }
         [HttpPost]
         [Route("create-VitalSigns")]
-        [Authorize(Roles = "Nurse")]
+        //[Authorize(Roles = "Nurse")]
 
         public async Task<IActionResult> CreateVitalSigns(VitalSigns vitals)
         {
@@ -106,7 +120,7 @@ namespace HISApp.Controllers
         #region Diagnosis
         [HttpGet]
         [Route("Diagnosis")]
-        [Authorize(Roles = "Admin,Doctor,Nurse,Pharmacist")]
+        //[Authorize(Roles = "Admin,Doctor,Nurse,Pharmacist")]
 
         public async Task<IActionResult> GetDiagnosis(int id)
         {
@@ -116,7 +130,7 @@ namespace HISApp.Controllers
         }
         [HttpPost]
         [Route("Create-Diagnosis")]
-        [Authorize(Roles = "Doctor")]
+        //[Authorize(Roles = "Doctor")]
 
         public async Task<IActionResult> Create(Diagnosis dia)
         {
@@ -131,7 +145,7 @@ namespace HISApp.Controllers
 
         [HttpGet]
         [Route("SickLeave")]
-        [Authorize(Roles = "Management Staff")]
+        //[Authorize(Roles = "Management Staff")]
 
         public async Task<IActionResult> GetSickLeave(int id)
         {
@@ -141,7 +155,7 @@ namespace HISApp.Controllers
         }
         [HttpPost]
         [Route("create-SickLeave")]
-        [Authorize(Roles = "Management Staff")]
+        //[Authorize(Roles = "Management Staff")]
 
         public async Task<IActionResult> CreateSickLeave(SickLeave sic)
         {
@@ -153,7 +167,7 @@ namespace HISApp.Controllers
 
         #region Drug
         [HttpPost]
-        [Authorize(Roles = "Pharmacist")]
+        //[Authorize(Roles = "Pharmacist")]
         [Route("create-drug")]
         public async Task<IActionResult> AddDrug(Drug drg)//from logistics
         {
@@ -163,7 +177,7 @@ namespace HISApp.Controllers
         }
         [HttpGet]
         [Route("get-drug")]
-        [Authorize(Roles = "Pharmacist,Management Staff")]
+        //[Authorize(Roles = "Pharmacist,Management Staff")]
         
         public async Task<IActionResult> GetAllDrug()//for inventory of hospital
         {
@@ -173,7 +187,7 @@ namespace HISApp.Controllers
 
         [HttpGet]
         [Route("get-orders")]
-        [Authorize(Roles = "Management Staff")]
+        //[Authorize(Roles = "Management Staff")]
 
         public async Task<IActionResult> getAllorders()//for inventory of hospital
         {
@@ -183,7 +197,7 @@ namespace HISApp.Controllers
 
         [HttpPost]
         [Route("create-order")]//for pharmacist
-        [Authorize(Roles = "Pharmacist")]
+        //[Authorize(Roles = "Pharmacist")]
         public async Task<IActionResult> createOrder(DrugOrders ord)
         {
             context.Orders.Add(ord);

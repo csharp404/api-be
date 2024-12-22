@@ -19,7 +19,7 @@ namespace HISApp.Controllers
 
         [HttpPost]
         [Route("user-Create")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(SignUpDTO usr)
         {
             SignUpUserCommand user = new SignUpUserCommand(usr);
@@ -32,7 +32,7 @@ namespace HISApp.Controllers
         }
         [HttpGet]
         [Route("users/{role}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> GetAllDoctor(int role)
         {
@@ -42,7 +42,7 @@ namespace HISApp.Controllers
         }
         [HttpGet]
         [Route("user/{id}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> GetDoctorById([FromRoute]string id)
         {
@@ -52,16 +52,16 @@ namespace HISApp.Controllers
 
         [HttpPut]
         [Route("user-update")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
 
-        public async Task<IActionResult> GetDoctorById(UpdateDto doc)
+        public async Task<IActionResult> Update(UpdateDto doc)
         {
             var result = await sender.Send(new RequestUpdateDoctorCommand(doc));
             return Ok(result);
         }
         [HttpDelete]
         [Route("user-delete/{id}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteDoctorByID(string id)
         {
             var result = await sender.Send(new RequestDeleteDoctorCommand(id));

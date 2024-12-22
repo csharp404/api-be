@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using HISApp.Data;
 using HISApp.Domain;
 using HISApp.DTOs;
@@ -21,16 +22,22 @@ builder.Services.AddDbContext<MyDbContext>(op => op.UseSqlServer(builder.Configu
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<MyDbContext>()
     .AddDefaultTokenProviders();
+
+
+
+    
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-        });
+    options.AddPolicy("AllowSpecificOrigins", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173") // Add your frontend's URL
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials(); // Allow cookies or authorization headers
+    });
 });
+
 
 builder.Services.AddMediatR(i => i.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddTransient<AccountService>();
@@ -63,5 +70,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseCors("AllowAllOrigins");
+app.UseCors("AllowSpecificOrigins");
+
 app.Run();

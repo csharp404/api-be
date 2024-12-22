@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HISApp.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20241213165109_add-some-tables02")]
-    partial class addsometables02
+    [Migration("20241222204452_editPatientTable05")]
+    partial class editPatientTable05
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -237,15 +237,24 @@ namespace HISApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTime>("AdmissionDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AreaId")
                         .HasColumnType("int");
 
                     b.Property<string>("BloodType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -273,14 +282,19 @@ namespace HISApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Patients");
                 });
@@ -682,17 +696,11 @@ namespace HISApp.Migrations
 
             modelBuilder.Entity("HISApp.Domain.Patient", b =>
                 {
-                    b.HasOne("HISApp.Domain.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HISApp.Domain.User", null)
+                    b.HasOne("HISApp.Domain.User", "User")
                         .WithMany("Patients")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
 
-                    b.Navigation("Address");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("HISApp.Domain.Prescription", b =>
