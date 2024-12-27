@@ -21,6 +21,8 @@ namespace HISApp.DTOs
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public int Role { get; set; }
+        public IFormFile img { set; get; }
+        public string Specialization { set; get; }
 
 
     }

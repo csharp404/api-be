@@ -1,4 +1,5 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System.Diagnostics.Eventing.Reader;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using HISApp.Constants;
@@ -11,11 +12,17 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace HISApp.DTOs
 {
-    public class AccountService(RoleManager<IdentityRole> roleManager, UserManager<User> userManager, SignInManager<User> signin, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+    public class AccountService(IWebHostEnvironment env,RoleManager<IdentityRole> roleManager, UserManager<User> userManager, SignInManager<User> signin, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
     {
 
         public async Task<string> Register(SignUpDTO user)
         {
+            var path = Path.Combine(env.WebRootPath ,"/images" ,user.img.FileName );
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await user.img.CopyToAsync(stream);
+            }
+           
             var add = new Address()
             {
                 AreaId = user.areaid,
@@ -34,7 +41,9 @@ namespace HISApp.DTOs
                 Experience = user.experience,
                 Address = add,
                 HireDate = user.hiredate,
-                AddressId = add.Id
+                AddressId = add.Id,
+                Specialization = user.Specialization,
+                ImagePath = path
             };
 
             string role = GetRoleName(user.Role);

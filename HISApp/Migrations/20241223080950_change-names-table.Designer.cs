@@ -4,6 +4,7 @@ using HISApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HISApp.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241223080950_change-names-table")]
+    partial class changenamestable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,122 +68,6 @@ namespace HISApp.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("Areas");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CityId = 1,
-                            Name = "Jabal Amman"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CityId = 1,
-                            Name = "Sweifieh"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CityId = 1,
-                            Name = "Dabouq"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CityId = 1,
-                            Name = "Al-Abdali"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CityId = 2,
-                            Name = "Al-Hassan Industrial Estate"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CityId = 2,
-                            Name = "University District"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CityId = 2,
-                            Name = "Al-Sarih"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CityId = 3,
-                            Name = "North Beach"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CityId = 3,
-                            Name = "South Port"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CityId = 3,
-                            Name = "Ayla Oasis"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CityId = 4,
-                            Name = "New Zarqa"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CityId = 4,
-                            Name = "Al-Ghabawi"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CityId = 5,
-                            Name = "Mount Nebo"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CityId = 5,
-                            Name = "Al-Rumaytha"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CityId = 6,
-                            Name = "Wadi Al-Seer"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CityId = 7,
-                            Name = "North Mafraq"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CityId = 8,
-                            Name = "Dana Reserve"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CityId = 9,
-                            Name = "Shihan"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CityId = 10,
-                            Name = "Souf"
-                        });
                 });
 
             modelBuilder.Entity("HISApp.Domain.City", b =>
@@ -198,58 +85,6 @@ namespace HISApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Amman"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Irbid"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Aqaba"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Zarqa"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Madaba"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Salt"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Mafraq"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Tafilah"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Karak"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Jerash"
-                        });
                 });
 
             modelBuilder.Entity("HISApp.Domain.Department", b =>
@@ -267,58 +102,6 @@ namespace HISApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Cardiology"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Neurology"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Pharmacy"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Oncology"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Pediatrics"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Radiology"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Surgery"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Emergency Medicine"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Dermatology"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Gastroenterology"
-                        });
                 });
 
             modelBuilder.Entity("HISApp.Domain.Diagnosis", b =>
@@ -742,32 +525,6 @@ namespace HISApp.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Role", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "3db96418-ed8e-411b-8722-bf524215fab4",
-                            Name = "Doctor",
-                            NormalizedName = "DOCTOR"
-                        },
-                        new
-                        {
-                            Id = "3e2e9ac4-6b51-4fc7-8671-d09bc9c6a503",
-                            Name = "Nurse",
-                            NormalizedName = "NURSE"
-                        },
-                        new
-                        {
-                            Id = "94e751d5-8d3f-4df8-880e-11693a8320d9",
-                            Name = "ManagementStaff",
-                            NormalizedName = "MANAGEMENTSTAFF"
-                        },
-                        new
-                        {
-                            Id = "86efcd57-bbb6-44cf-bc6a-92504a8fa01b",
-                            Name = "Pharmacist",
-                            NormalizedName = "PHARMACIST"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

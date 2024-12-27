@@ -18,13 +18,20 @@ namespace HISApp.Feature.Doctor.GetAll
             string role = GetRoleName(request.role);
             var doctors = await _userManager.GetUsersInRoleAsync(role);
 
+            List<byte[]> filepaths = new List<byte[]>();
+            foreach (var doctor in doctors)
+            {
+                var fileBytes = System.IO.File.ReadAllBytes(doctor.ImagePath);
+                filepaths.Add(fileBytes);
+            }
+
             // Map users to DTOs
-            var doctorCards = doctors.Select(doctor => new CardsDto
+            var doctorCards = doctors.Select((doctor, index) => new CardsDto
             {
                 Id = doctor.Id,
-                Name = $"Dr.{doctor.FirstName} {doctor.LastName}",
-                Description = doctor.Department?.Name, 
-                ImgPath = doctor.ImageUrl
+                Name = $"Dr. {doctor.FirstName} {doctor.LastName}",
+                Description = doctor.Department?.Name,
+                Img = filepaths[index] 
             }).ToList();
 
             return new ResponseDoctorsQuery(doctorCards);
