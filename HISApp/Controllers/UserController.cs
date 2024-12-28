@@ -3,6 +3,7 @@ using HISApp.DTOs;
 using HISApp.Feature.Doctor.Delete;
 using HISApp.Feature.Doctor.GetAll;
 using HISApp.Feature.Doctor.GetById;
+using HISApp.Feature.Doctor.GetByIdAndDepartmet;
 using HISApp.Feature.Doctor.Update;
 using HISApp.Feature.User.SignUp;
 using MediatR;
@@ -49,7 +50,15 @@ namespace HISApp.Controllers
             var result = await sender.Send(new RequestDoctorByIdQuery(id));
             return Ok(result);
         }
+        [HttpGet]
+        [Route("user/{role}/{departmentid}")]
+        //[Authorize(Roles = "Admin")]
 
+        public async Task<IActionResult> GetDoctorByIdanddepartment([FromRoute] int role, [FromRoute] int departmentid)
+        {
+            var result = await sender.Send(new RequestDoctorsDepartmentQuery(role, departmentid));
+            return Ok(result);
+        }
         [HttpPut]
         [Route("user-update")]
         //[Authorize(Roles = "Admin")]

@@ -5,6 +5,7 @@ namespace HISApp.DTOs;
 
 public class PatientsDto
 {
+    public int Id { set; get; }
     public string firstName { get; set; }
     public string lastName { get; set; }
     public int departmentId { set; get; }
@@ -16,9 +17,8 @@ public class PatientsDto
     public string bloodType { set; get; }
     public int Areaid { set; get; }
     public int CityId { set; get; }
-    public string legalGaurdainPhone { get; set; }
-    public string legalGaurdainName { get; set; }
-    public Guid userId { get; set; }
+    public string? legalGaurdainPhone { get; set; }
+    public string? legalGaurdainName { get; set; }
    
 
 

@@ -29,18 +29,21 @@ namespace HISApp.Domain
         public DateTime AdmissionDate { set; get; } = DateTime.Now;
 
         public int DepartmentId { set; get; }
+        public Department Department { set; get; }
 
         public string PhoneNumber { set; get; }
 
         public int AreaId { get; set; }
+        public Area Area { set; get; }
         public int CityId { get; set; }
-       
+        public City City { set; get; }
         public Guid? UserId { set; get; }
         public User? User { set; get; }
 
         public string PCD { set; get; }
 
         public bool IsDeleted { get; set; } = false;
+
         public virtual ICollection<HospitalVisit>? HospitalVisits { get; set; }
 
         public virtual ICollection<Prescription>? Prescriptions { get; set; } 

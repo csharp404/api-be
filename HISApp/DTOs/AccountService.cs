@@ -17,11 +17,11 @@ namespace HISApp.DTOs
 
         public async Task<string> Register(SignUpDTO user)
         {
-            var path = Path.Combine(env.WebRootPath ,"/images" ,user.img.FileName );
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                await user.img.CopyToAsync(stream);
-            }
+            //var path = Path.Combine(env.WebRootPath ,"/images" ,user.img.FileName );
+            //using (var stream = new FileStream(path, FileMode.Create))
+            //{
+            //    await user.img.CopyToAsync(stream);
+            //}
            
             var add = new Address()
             {
@@ -42,8 +42,8 @@ namespace HISApp.DTOs
                 Address = add,
                 HireDate = user.hiredate,
                 AddressId = add.Id,
-                Specialization = user.Specialization,
-                ImagePath = path
+                //Specialization = user.Specialization,
+                //ImagePath = path
             };
 
             string role = GetRoleName(user.Role);

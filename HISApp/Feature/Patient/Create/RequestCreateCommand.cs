@@ -2,12 +2,14 @@
 using HISApp.Domain;
 using HISApp.DTOs;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
+using System.Linq;
 
 namespace HISApp.Feature.Patient.Create;
 
 public record ResponseCreateCommand(int status);
 public record RequestCreateCommand(PatientsDto Patient) :IRequest<ResponseCreateCommand>;
-public class  RequestCreateCommandHandler (MyDbContext context): IRequestHandler<RequestCreateCommand, ResponseCreateCommand>{
+public class  RequestCreateCommandHandler (MyDbContext context, UserManager<Domain.User> userManager) : IRequestHandler<RequestCreateCommand, ResponseCreateCommand>{
     public async Task<ResponseCreateCommand> Handle(RequestCreateCommand request, CancellationToken cancellationToken)
     {
         try
@@ -24,12 +26,14 @@ public class  RequestCreateCommandHandler (MyDbContext context): IRequestHandler
                 PhoneNumber = request.Patient.phoneNumber,
                 DepartmentId = request.Patient.departmentId,
                 PCD = request.Patient.pcd,
-                UserId = request.Patient.userId,
+                UserId = Guid.Parse(request.Patient.pcd),
                 AreaId = request.Patient.Areaid,
                 CityId = request.Patient.CityId,
                 
             };
-
+            var data = await userManager.FindByIdAsync(request.Patient.pcd);
+            data.Patients.Add(Patient);
+            
             await context.Patients.AddAsync(Patient);
             context.SaveChanges();
             return new ResponseCreateCommand(1);

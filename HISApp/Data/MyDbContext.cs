@@ -104,25 +104,25 @@ namespace HISApp.Data
             builder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "1",
                     Name = "Doctor",
                     NormalizedName = "DOCTOR".ToUpper()
                 },
                 new IdentityRole
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "2",
                     Name = "Nurse",
                     NormalizedName = "NURSE".ToUpper()
                 },
                 new IdentityRole
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "3",
                     Name = "ManagementStaff",
                     NormalizedName = "MANAGEMENTSTAFF".ToUpper()
                 },
                 new IdentityRole
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "4",
                     Name = "Pharmacist",
                     NormalizedName = "PHARMACIST".ToUpper()
                 }

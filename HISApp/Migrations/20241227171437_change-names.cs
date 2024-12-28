@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace HISApp.Migrations
 {
     /// <inheritdoc />
-    public partial class editPatientTable05 : Migration
+    public partial class changenames : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -429,6 +431,77 @@ namespace HISApp.Migrations
                         principalTable: "Patients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "22285aeb-4b5a-492e-aaab-a7a0f426a7f3", null, "Nurse", "NURSE" },
+                    { "7392c0fe-97ac-407e-95f9-f86fde34106e", null, "Doctor", "DOCTOR" },
+                    { "d1f25fdf-ba9d-46bd-978d-9c484d849a7f", null, "ManagementStaff", "MANAGEMENTSTAFF" },
+                    { "e5a2aef9-24a6-4847-b8d1-f0a771217099", null, "Pharmacist", "PHARMACIST" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cities",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Amman" },
+                    { 2, "Irbid" },
+                    { 3, "Aqaba" },
+                    { 4, "Zarqa" },
+                    { 5, "Madaba" },
+                    { 6, "Salt" },
+                    { 7, "Mafraq" },
+                    { 8, "Tafilah" },
+                    { 9, "Karak" },
+                    { 10, "Jerash" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Departments",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Cardiology" },
+                    { 2, "Neurology" },
+                    { 3, "Pharmacy" },
+                    { 4, "Oncology" },
+                    { 5, "Pediatrics" },
+                    { 6, "Radiology" },
+                    { 7, "Surgery" },
+                    { 8, "Emergency Medicine" },
+                    { 9, "Dermatology" },
+                    { 10, "Gastroenterology" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Areas",
+                columns: new[] { "Id", "CityId", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, "Jabal Amman" },
+                    { 2, 1, "Sweifieh" },
+                    { 3, 1, "Dabouq" },
+                    { 4, 1, "Al-Abdali" },
+                    { 5, 2, "Al-Hassan Industrial Estate" },
+                    { 6, 2, "University District" },
+                    { 7, 2, "Al-Sarih" },
+                    { 8, 3, "North Beach" },
+                    { 9, 3, "South Port" },
+                    { 10, 3, "Ayla Oasis" },
+                    { 11, 4, "New Zarqa" },
+                    { 12, 4, "Al-Ghabawi" },
+                    { 13, 5, "Mount Nebo" },
+                    { 14, 5, "Al-Rumaytha" },
+                    { 15, 6, "Wadi Al-Seer" },
+                    { 16, 7, "North Mafraq" },
+                    { 17, 8, "Dana Reserve" },
+                    { 18, 9, "Shihan" },
+                    { 19, 10, "Souf" }
                 });
 
             migrationBuilder.CreateIndex(

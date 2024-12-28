@@ -21,6 +21,6 @@ namespace HISApp.Domain
         public string? Specialization { get; set; }
         public string? ImagePath { get; set; }
         public string? ImageUrl { get; set; }
-        public virtual ICollection<Patient>? Patients { get; set; }
+        public virtual ICollection<Patient>? Patients { get; set; } = new List<Patient>();
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HISApp.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20241223080950_change-names-table")]
-    partial class changenamestable
+    [Migration("20241227171907_change-namesf")]
+    partial class changenamesf
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,122 @@ namespace HISApp.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("Areas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityId = 1,
+                            Name = "Jabal Amman"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityId = 1,
+                            Name = "Sweifieh"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityId = 1,
+                            Name = "Dabouq"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CityId = 1,
+                            Name = "Al-Abdali"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CityId = 2,
+                            Name = "Al-Hassan Industrial Estate"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CityId = 2,
+                            Name = "University District"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CityId = 2,
+                            Name = "Al-Sarih"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CityId = 3,
+                            Name = "North Beach"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CityId = 3,
+                            Name = "South Port"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CityId = 3,
+                            Name = "Ayla Oasis"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CityId = 4,
+                            Name = "New Zarqa"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CityId = 4,
+                            Name = "Al-Ghabawi"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CityId = 5,
+                            Name = "Mount Nebo"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CityId = 5,
+                            Name = "Al-Rumaytha"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CityId = 6,
+                            Name = "Wadi Al-Seer"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CityId = 7,
+                            Name = "North Mafraq"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CityId = 8,
+                            Name = "Dana Reserve"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CityId = 9,
+                            Name = "Shihan"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CityId = 10,
+                            Name = "Souf"
+                        });
                 });
 
             modelBuilder.Entity("HISApp.Domain.City", b =>
@@ -85,6 +201,58 @@ namespace HISApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Amman"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Irbid"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Aqaba"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Zarqa"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Madaba"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Salt"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Mafraq"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Tafilah"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Karak"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Jerash"
+                        });
                 });
 
             modelBuilder.Entity("HISApp.Domain.Department", b =>
@@ -102,6 +270,58 @@ namespace HISApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Cardiology"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Neurology"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Pharmacy"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Oncology"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Pediatrics"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Radiology"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Surgery"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Emergency Medicine"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Dermatology"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Gastroenterology"
+                        });
                 });
 
             modelBuilder.Entity("HISApp.Domain.Diagnosis", b =>
@@ -524,7 +744,33 @@ namespace HISApp.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("Role", (string)null);
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            Name = "Doctor",
+                            NormalizedName = "DOCTOR"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            Name = "Nurse",
+                            NormalizedName = "NURSE"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            Name = "ManagementStaff",
+                            NormalizedName = "MANAGEMENTSTAFF"
+                        },
+                        new
+                        {
+                            Id = "4",
+                            Name = "Pharmacist",
+                            NormalizedName = "PHARMACIST"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -549,59 +795,7 @@ namespace HISApp.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaim", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("User", (string)null);
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -626,7 +820,7 @@ namespace HISApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaim", (string)null);
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -648,7 +842,7 @@ namespace HISApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogin", (string)null);
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -663,7 +857,7 @@ namespace HISApp.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRole", (string)null);
+                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -682,7 +876,7 @@ namespace HISApp.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserToken", (string)null);
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("HISApp.Domain.Address", b =>
