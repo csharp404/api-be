@@ -100,7 +100,24 @@ namespace HISApp.Data
                 new Department { Id = 10, Name = "Gastroenterology" }
             );
 
+            builder.Entity<Patient>()
+                .HasOne(p => p.Area)
+                .WithMany()
+                .HasForeignKey(p => p.AreaId)
+                .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<Patient>()
+                .HasOne(p => p.City)
+                .WithMany()
+                .HasForeignKey(p => p.CityId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+            builder.Entity<Patient>()
+                .HasOne(p => p.Department)
+                .WithMany()
+                .HasForeignKey(p => p.DepartmentId)
+                .OnDelete(DeleteBehavior.Restrict);
             builder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {

@@ -159,22 +159,59 @@ namespace HISApp.Controllers
 
         public async Task<IActionResult> GetDiagnosis(int id)
         {
-            var data = context.Patients.Include(x => x.Diagnoses).FirstOrDefault(x => x.Id == id);
-            var dia = data.Diagnoses.OrderDescending().FirstOrDefault();
+            var dia = context.Diagnosis.Include(x => x.Patient).Where(x => x.Patient.Id == id)
+                .OrderByDescending(x => x.Created).FirstOrDefault();
+            var dd = new DiagnosisCreateDTO()
+            {
+                PatientId = dia.PatientId,
+                Description = dia.Description,
+                Symptoms = dia.Symptoms,
+                PatientName = dia.Patient.FirstName + " " + dia.Patient.LastName,
+                Notes = dia.Notes,
+                Created = dia.Created
+            };
+            return Ok(dd);
+        }
+        [HttpGet]
+        [Route("AllDiagnosis")]
+        //[Authorize(Roles = "Admin,Doctor,Nurse,Pharmacist")]
+
+        public async Task<IActionResult> AllDiagnosis(int id)
+        {
+            var dia = context.Diagnosis.Include(x => x.Patient).Where(x => x.Patient.Id == id)
+                .OrderByDescending(x => x.Created).Select(x=>new DiagnosisCreateDTO()
+                {
+                    PatientId = x.PatientId,
+                    Description = x.Description,
+                    Symptoms = x.Symptoms,
+                    PatientName = x.Patient.FirstName + " " + x.Patient.LastName,
+                    Notes = x.Notes,
+                    Created = x.Created
+                });
+          
             return Ok(dia);
         }
         [HttpPost]
         [Route("Create-Diagnosis")]
         //[Authorize(Roles = "Doctor")]
 
-        public async Task<IActionResult> Create(Diagnosis dia)
+        public async Task<IActionResult> Create(DiagnosisCreateDTO diag)
         {
+            var dia = new Diagnosis()
+            {
+                Notes = diag.Notes,
+                Description = diag.Description,
+                Symptoms = diag.Symptoms,
+                PatientId = diag.PatientId,
+
+            };
             context.Diagnosis.Add(dia);
-            context.SaveChanges();
+          await  context.SaveChangesAsync();
             return Ok();
         }
 
         #endregion
+
 
         #region SickLeave
 
@@ -184,21 +221,61 @@ namespace HISApp.Controllers
 
         public async Task<IActionResult> GetSickLeave(int id)
         {
-            var data = context.Patients.Include(x => x.Diagnoses).FirstOrDefault(x => x.Id == id);
-            var sickleave = data.SickLeaves.OrderDescending().FirstOrDefault();
-            return Ok(sickleave);
+            var sic = context.SickLeaves.Include(x => x.Patient).Where(x => x.Patient.Id == id)
+                .OrderByDescending(x => x.CreatedAt).FirstOrDefault();
+            var data = new SickLeaveDto()
+            {
+                PatientId = sic.PatientId,
+                reason = sic.Reason,
+                duration = sic.duration,
+                endDate = sic.end,
+                startDate = sic.start,
+                CreatedAt = sic.CreatedAt
+                
+            };
+            return Ok(data);
+        }
+        [HttpGet]
+        [Route("AllSickLeave")]
+        //[Authorize(Roles = "Management Staff")]
+
+        public async Task<IActionResult> GetAllSickLeave(int id)
+        {
+            var sic = context.SickLeaves.Include(x => x.Patient).Where(x => x.Patient.Id == id)
+                .OrderByDescending(x => x.CreatedAt).Select(sic=>new SickLeaveDto()
+                {
+                    PatientId = sic.PatientId,
+                    reason = sic.Reason,
+                    duration = sic.duration,
+                    endDate = sic.end,
+                    startDate = sic.start,
+                    CreatedAt = sic.CreatedAt
+                });
+           
+            return Ok(sic);
         }
         [HttpPost]
         [Route("create-SickLeave")]
         //[Authorize(Roles = "Management Staff")]
 
-        public async Task<IActionResult> CreateSickLeave(SickLeave sic)
+        public async Task<IActionResult> CreateSickLeave(SickLeaveDto sic)
         {
-            context.SickLeaves.Add(sic);
+            var data = new SickLeave()
+            {
+                end = sic.endDate,
+                start = sic.startDate,
+                PatientId = sic.PatientId,
+                Reason = sic.reason,
+                duration = sic.duration
+            };
+            context.SickLeaves.Add(data);
             context.SaveChanges();
             return Ok();
         }
         #endregion
+
+
+
 
         #region Drug
         [HttpPost]

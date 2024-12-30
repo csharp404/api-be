@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HISApp.Domain
@@ -34,8 +35,11 @@ namespace HISApp.Domain
         public string PhoneNumber { set; get; }
 
         public int AreaId { get; set; }
+        [DeleteBehavior(DeleteBehavior.Cascade)]
         public Area Area { set; get; }
         public int CityId { get; set; }
+        [DeleteBehavior(DeleteBehavior.Cascade)]
+
         public City City { set; get; }
         public Guid? UserId { set; get; }
         public User? User { set; get; }
