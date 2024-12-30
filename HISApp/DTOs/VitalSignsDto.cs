@@ -3,10 +3,10 @@
 public class VitalSignsDto
 {
     public int Id { set; get; }
-    public int HeartRate { get; set; }
+    public float HeartRate { get; set; }
     public string BloodPressure { get; set; }
     public float Temperature { get; set; }
-    public int Breaths { set; get; } 
+    public float Breaths { set; get; } 
     
     
     public float HeartRateAVG { get; set; }

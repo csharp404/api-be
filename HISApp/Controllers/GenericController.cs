@@ -50,9 +50,17 @@ namespace HISApp.Controllers
 
         public async Task<IActionResult> getPrescription(int id)
         {
-            var data =  context.Prescriptions.OrderByDescending(x => x.CreateAt);
-            var pres = data.FirstOrDefault(x => x.PatientId == id);
-            return Ok(pres);
+            var data =  context.Prescriptions.Include(x=>x.Patient).OrderByDescending(x => x.CreateAt).Where(x=>x.PatientId==id).Select(x=>new prescriptionDTO()
+            {
+                PatientName = x.Patient.FirstName + " " + x.Patient.LastName,
+                Dosage = x.Dosage,
+                Instructions =  x.Instructions,
+                PatientId = x.PatientId,
+                Medication = x.Medication,
+                CreatedAt = x.CreateAt
+            }).FirstOrDefault();
+            
+            return Ok(data);
         }
         [HttpGet]
         [Route("AllPrecription")]
@@ -61,10 +69,19 @@ namespace HISApp.Controllers
         public async Task<IActionResult> GetAllPrescription(int id)
         {
             var data = context.Patients.Include(x => x.Prescriptions).FirstOrDefault(x=>x.Id==id);
-            return Ok(data.Prescriptions);
+            var pres = data.Prescriptions.Select(x => new prescriptionDTO()
+            {
+                Dosage = x.Dosage,
+                Instructions = x.Instructions,
+                Medication = x.Medication,
+                PatientId = x.PatientId,
+                PatientName = x.Patient.FirstName + " "+ x.Patient.LastName,
+                CreatedAt = x.CreateAt
+            });
+            return Ok(pres);
         }
         [HttpPost]
-        [Route("Create- Precription")]
+        [Route("Create-Precription")]
         //[Authorize(Roles = "Doctor")]
 
         public async Task<IActionResult> CreatePrescription(prescriptionDTO pres)
@@ -97,9 +114,16 @@ namespace HISApp.Controllers
                 Breaths = x.Breaths,
                 HeartRate = x.HeartRate,
                 Temperature = x.Temperature,
-                DateRecorded = x.DateRecorded
+                DateRecorded = x.DateRecorded,
+               
 
             }).ToList();
+            if (vital is not null)
+            {
+                vital[0].BreathsAVG = vital.Average(x => x.Breaths);
+                vital[0].HeartRateAVG = vital.Average(x => x.HeartRate);
+                vital[0].TemperatureAVG = vital.Average(x => x.Temperature);
+            }
             return Ok(vital);
 
         }
@@ -107,8 +131,17 @@ namespace HISApp.Controllers
         [Route("create-VitalSigns")]
         //[Authorize(Roles = "Nurse")]
 
-        public async Task<IActionResult> CreateVitalSigns(VitalSigns vitals)
+        public async Task<IActionResult> CreateVitalSigns(VitalsignDto vital)
         {
+            var vitals = new VitalSigns()
+            {
+                PatientId = vital.PatientId,
+                BloodPressure = vital.BloodPressure,
+                Breaths = vital.Breaths,
+                HeartRate = vital.HeartRate,
+                Temperature = vital.Temperature,
+                DateRecorded = DateTime.Now
+            };
             context.VitalSigns.Add(vitals);
             context.SaveChanges();
             return Ok();
@@ -116,6 +149,8 @@ namespace HISApp.Controllers
 
 
         #endregion
+
+
 
         #region Diagnosis
         [HttpGet]

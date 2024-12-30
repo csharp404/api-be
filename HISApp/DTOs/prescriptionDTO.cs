@@ -1,4 +1,6 @@
-﻿namespace HISApp.DTOs;
+﻿using HISApp.Domain;
+
+namespace HISApp.DTOs;
 
 public class prescriptionDTO
 {
@@ -6,4 +8,8 @@ public class prescriptionDTO
     public string Dosage { set; get; }
     public string Instructions { set; get; }
     public int PatientId { get; set; }
+
+    public string? PatientName { set; get; }
+
+    public DateTime CreatedAt { set; get; }
 }
