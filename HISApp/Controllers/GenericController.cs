@@ -275,7 +275,57 @@ namespace HISApp.Controllers
         #endregion
 
 
+        #region CODE
 
+        [HttpGet]
+        [Route("/GetAllCodes")]
+
+        public async Task<IActionResult> GetAllCodes()
+        {
+            var data = context.Codes.ToList();
+            return Ok(data);
+        }
+        [HttpGet]
+        [Route("/GetCodeById")]
+        public async Task<IActionResult> GetCodeById(int id)
+        {
+            var data = context.Codes.Where(x=>x.Id==id).ToList();
+            return Ok(data);
+        }
+        [HttpGet]
+        [Route("/GetAllEmergency")]
+        public async Task<IActionResult> GetAllEmergency()
+        {
+            var data = context.Emergencies.Include(x=>x.EmergencyCode).OrderByDescending(x=>x.Id).ToList();
+            return Ok(data);
+        }
+        [HttpPost]
+        [Route("/CreateEmergency")]
+
+        public async Task<IActionResult> CreateEmergency(int id)
+        {
+            var data = context.Codes.Find(id);
+            var emer = new Emergencies()
+            {
+                EmergencyCodeId = id,
+                EmergencyCode = data
+            };
+            context.Emergencies.Add(emer);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
+        [HttpDelete]
+        [Route("/DeleteEmergency")]
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var data = context.Emergencies.Find(id);
+           
+            context.Emergencies.Remove(data);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
+        #endregion
 
         #region Drug
         [HttpPost]

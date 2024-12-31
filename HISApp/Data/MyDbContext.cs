@@ -27,6 +27,8 @@ namespace HISApp.Data
         public DbSet<Diagnosis> Diagnosis { get; set; }
         public DbSet<SickLeave> SickLeaves { get; set; }
         public DbSet<DrugOrders> Orders { get; set; }
+        public DbSet<EmergencyCode> Codes{ get; set; }
+        public DbSet<Emergencies> Emergencies { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -34,6 +36,7 @@ namespace HISApp.Data
                 .HasOne(a => a.User)
                 .WithOne(u => u.Address)
                 .HasForeignKey<Address>(a => a.UserId);
+
 
             //builder.Entity<IdentityRole>().ToTable("Role"); // Rename AspNetRoles to Role
             //builder.Entity<IdentityUser>().ToTable("User"); // Rename AspNetUsers to User
@@ -144,6 +147,50 @@ namespace HISApp.Data
                     NormalizedName = "PHARMACIST".ToUpper()
                 }
                
+            );
+            builder.Entity<EmergencyCode>().HasData(
+                new EmergencyCode()
+                {
+                    Id = 1,
+                    Title = "Medical Emergency",
+                    Description = "Represents a critical medical emergency, such as cardiopulmonary arrest, requiring immediate medical intervention.",
+                    Color = "#2A7DCE",
+                    Code = "Code BLUE"
+                },
+                new EmergencyCode()
+                {
+                    Id =2,
+                    Title = "Fire",
+                    Description = "Indicates a fire emergency, necessitating fire safety protocols and evacuation procedures",
+                    Color = "#D94141",
+                    Code = "Code RED"
+                },
+                new EmergencyCode()
+                {
+                    Id = 3,
+                    Title = "Radioactive Accident",
+                    Description = "indicates radioactive contamination or incidents, requiring specialized radiology and safety teams",
+                    Color = "#D94141",
+                    Code = "Code GREY"
+                },
+                new EmergencyCode()
+                {
+                    Id = 4,
+                    Title = "Chemical or Biological spillage",
+                    Description = "Denotes a chemical or biological spill, requiring specialized cleanup and safety measures",
+                    Color = "#49B06C",
+                    Code = "Code GREEN"
+                },
+                new EmergencyCode()
+                {
+                    Id = 5,
+                    Title = "Mass casualties",
+                    Description = "Refers to mass casualty incidents, involving coordination for large-scale emergency medical response",
+                    Color = "#F28C3A",
+                    Code = "Code ORANGE"
+                }
+
+
             );
         }
 
