@@ -303,17 +303,42 @@ namespace HISApp.Controllers
 
         public async Task<IActionResult> getAllorders()//for inventory of hospital
         {
-            var data = context.Orders.ToList();
+            var data = context.Orders.Include(x=>x.Drug).ToList();
             return Ok(data);
         }
 
         [HttpPost]
         [Route("create-order")]//for pharmacist
         //[Authorize(Roles = "Pharmacist")]
-        public async Task<IActionResult> createOrder(DrugOrders ord)
+        public async Task<IActionResult> createOrder(OrderDTO ord)
         {
-            context.Orders.Add(ord);
+
+            var order = new DrugOrders()
+            {
+                Note = ord.Note,
+                QTY = ord.QTY,
+                RequestedBy = ord.RequestedBy,
+                Name = ord.Name,
+                DrugId = ord.DrugId
+            };
+
+            context.Orders.Add(order);
             context.SaveChanges();
+            return Ok();
+        }
+        [HttpPut]
+        [Route("update-order")]//for pharmacist
+        //[Authorize(Roles = "Pharmacist")]
+        public async Task<IActionResult> UpdateOrder(int id)
+        {
+
+            var data = context.Orders.Where(x => x.Id == id).FirstOrDefault();
+            if (data != null)
+            {
+                data.Status = 1;
+            }
+           
+            await  context.SaveChangesAsync();
             return Ok();
         }
         #endregion
