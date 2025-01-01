@@ -64,9 +64,9 @@ namespace HISApp.DTOs
             {
                 1 => "Doctor",
                 2 => "Nurse",
-                3 => "Management Staff",
+                3 => "ManagementStaff",
                 4 => "Pharmacist",
-                _ => "Unknown Role"
+                5 => "Admin"
             };
         }
 
@@ -126,6 +126,7 @@ namespace HISApp.DTOs
 
             return "delete fail !!!";
         }
+
         public async Task<string> Login(string Email, string Password)
         {
 
@@ -183,8 +184,7 @@ namespace HISApp.DTOs
             var claims = new List<Claim>
             {
                 new Claim("Id", user.Id.ToString()),
-                new Claim("Email", user.Email),
-                
+                new Claim("Email", user.Email)
             };
 
             
@@ -206,7 +206,7 @@ namespace HISApp.DTOs
             }
             else
             {
-                claims.Add(new Claim(ClaimTypes.Role, "Management Staff"));
+                claims.Add(new Claim(ClaimTypes.Role, "ManagementStaff"));
             }
 
             // Create token descriptor

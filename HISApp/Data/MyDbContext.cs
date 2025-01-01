@@ -145,6 +145,11 @@ namespace HISApp.Data
                     Id = "4",
                     Name = "Pharmacist",
                     NormalizedName = "PHARMACIST".ToUpper()
+                },new IdentityRole
+                {
+                    Id = "5",
+                    Name = "Admin",
+                    NormalizedName = "ADMIN".ToUpper()
                 }
                
             );
@@ -170,7 +175,7 @@ namespace HISApp.Data
                     Id = 3,
                     Title = "Radioactive Accident",
                     Description = "indicates radioactive contamination or incidents, requiring specialized radiology and safety teams",
-                    Color = "#D94141",
+                    Color = "#808080",
                     Code = "Code GREY"
                 },
                 new EmergencyCode()

@@ -161,6 +161,10 @@ namespace HISApp.Controllers
         {
             var dia = context.Diagnosis.Include(x => x.Patient).Where(x => x.Patient.Id == id)
                 .OrderByDescending(x => x.Created).FirstOrDefault();
+            if (dia == null)
+            {
+                return Ok(new DiagnosisCreateDTO());
+            }
             var dd = new DiagnosisCreateDTO()
             {
                 PatientId = dia.PatientId,

@@ -17,9 +17,8 @@ using Microsoft.EntityFrameworkCore;
     {
         public async Task<ResponseDoctorByIdQuery> Handle(RequestDoctorByIdQuery request, CancellationToken cancellationToken)
         {
-           
-            var data = await _userManager.GetUsersInRoleAsync("Doctor");
-            var doctor = data.FirstOrDefault(x => x.Id == request.id);
+
+            var doctor = await _userManager.FindByIdAsync(request.id);
             var address = context.Addresses.FirstOrDefault(x=>x.UserId==request.id);
             var department = context.Departments.Find(doctor.DepartmentId);
             var DoctorDetails =  new DetailsDto
