@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -7,8 +8,10 @@ namespace HISApp.Domain
 {
     public class Patient
     {
-                        
+        [Key]          
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column(Order = 1)]
+
         public int Id { get; set; }
 
         public string FirstName { get; set; }
@@ -33,6 +36,10 @@ namespace HISApp.Domain
         public Department Department { set; get; }
 
         public string PhoneNumber { set; get; }
+
+
+        [Column(Order = 2)] 
+        public string Code { set; get; } 
 
         public int AreaId { get; set; }
         [DeleteBehavior(DeleteBehavior.Cascade)]

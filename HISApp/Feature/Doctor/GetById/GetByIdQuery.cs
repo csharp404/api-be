@@ -19,6 +19,11 @@ using Microsoft.EntityFrameworkCore;
         {
 
             var doctor = await _userManager.FindByIdAsync(request.id);
+            if (doctor == null)
+            {
+                return new ResponseDoctorByIdQuery(new DetailsDto());
+            }
+
             var address = context.Addresses.FirstOrDefault(x=>x.UserId==request.id);
             var department = context.Departments.Find(doctor.DepartmentId);
             var DoctorDetails =  new DetailsDto
@@ -27,6 +32,7 @@ using Microsoft.EntityFrameworkCore;
                 FirstName = doctor.FirstName,
                 LastName = doctor.LastName,
                 departmentid = department.Id,
+                departmentName = department.Name,
                 age =  doctor.Age,
                 email = doctor.Email,
                 experience = doctor.Experience,

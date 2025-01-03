@@ -11,5 +11,5 @@ public class prescriptionDTO
 
     public string? PatientName { set; get; }
 
-    public DateTime CreatedAt { set; get; }
+    public DateTime CreatedAt { set; get; } = DateTime.Now;
 }

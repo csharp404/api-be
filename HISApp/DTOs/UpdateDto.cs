@@ -3,7 +3,8 @@
     public class UpdateDto
     {
             public string? id { get; set; }
-
+            public string? FirstName { set; get; } 
+            public string? LastName { set; get; } 
             public int? age { get; set; }
             public int? departmentid { get; set; }
             public string hiredate { get; set; }

@@ -29,7 +29,7 @@ namespace HISApp.Feature.Doctor.GetAll
             var doctorCards = doctors.Select((doctor, index) => new CardsDto
             {
                 Id = doctor.Id,
-                Name = $"Dr. {doctor.FirstName} {doctor.LastName}",
+                Name = $"{doctor.FirstName} {doctor.LastName}",
                 Description = doctor.Department?.Name,
                 //Img = filepaths[index] 
             }).ToList();
@@ -42,7 +42,7 @@ namespace HISApp.Feature.Doctor.GetAll
             {
                 1 => "Doctor",
                 2 => "Nurse",
-                3 => "Management Staff",
+                3 => "ManagementStaff",
                 4 => "Pharmacist",
                 _ => "Unknown Role"
             };

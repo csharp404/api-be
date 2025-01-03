@@ -8,6 +8,7 @@
         public string LastName { get; set; }
         public int? age { get; set; }
         public int? departmentid { get; set; }
+        public string? departmentName { get; set; }
         public string? hiredate { get; set; } = DateTime.Now.ToShortDateString();
         public string? experience { get; set; }
         public string? phonenumber { get; set; }

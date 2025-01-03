@@ -12,7 +12,7 @@ public class GetPatientDto
         public string address { get; set; }
         public int age { get; set; }
         public DateTime admissionDate { get; set; }
-       
-    
+        public string Code { set; get; }
+
 
 }

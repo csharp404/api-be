@@ -14,6 +14,8 @@ public class  RequestCreateCommandHandler (MyDbContext context, UserManager<Doma
     {
         try
         {
+            
+            
             var Patient = new Domain.Patient
             {
                 Age = request.Patient.age,
@@ -29,7 +31,7 @@ public class  RequestCreateCommandHandler (MyDbContext context, UserManager<Doma
                 UserId = Guid.Parse(request.Patient.pcd),
                 AreaId = request.Patient.Areaid,
                 CityId = request.Patient.CityId,
-                
+                Code = "p2h"+Guid.NewGuid().ToString().Substring(0,10)
             };
             var data = await userManager.FindByIdAsync(request.Patient.pcd);
             data.Patients.Add(Patient);

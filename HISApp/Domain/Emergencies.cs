@@ -8,5 +8,8 @@ public class Emergencies
     public int Id { set; get; }
 
     public int EmergencyCodeId { set; get; } 
+
+    public string NameOfUser { set; get; }
+    public string DepartmentName { set; get; }
     public EmergencyCode EmergencyCode { get; set; }
 }

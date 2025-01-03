@@ -4,6 +4,7 @@ using HISApp.Domain;
 using HISApp.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +12,7 @@ namespace HISApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GenericController (MyDbContext context): ControllerBase
+    public class GenericController (MyDbContext context,UserManager<User> userManager ): ControllerBase
     {
         [HttpGet]
         [Route("Departments")]
@@ -69,6 +70,10 @@ namespace HISApp.Controllers
         public async Task<IActionResult> GetAllPrescription(int id)
         {
             var data = context.Patients.Include(x => x.Prescriptions).FirstOrDefault(x=>x.Id==id);
+            if (data is null)
+            {
+                return Ok();
+            }
             var pres = data.Prescriptions.Select(x => new prescriptionDTO()
             {
                 Dosage = x.Dosage,
@@ -227,6 +232,10 @@ namespace HISApp.Controllers
         {
             var sic = context.SickLeaves.Include(x => x.Patient).Where(x => x.Patient.Id == id)
                 .OrderByDescending(x => x.CreatedAt).FirstOrDefault();
+            if (sic == null)
+            {
+                return Ok();
+            }
             var data = new SickLeaveDto()
             {
                 PatientId = sic.PatientId,
@@ -301,16 +310,29 @@ namespace HISApp.Controllers
         public async Task<IActionResult> GetAllEmergency()
         {
             var data = context.Emergencies.Include(x=>x.EmergencyCode).OrderByDescending(x=>x.Id).ToList();
+            if (data.Count == 0)
+            {
+                using (var xcontext = context)
+                {
+                    var tableName = "Emergencies";
+                    var newSeedValue =0; // Change to desired seed value
+                    xcontext.Database.ExecuteSqlRaw($"DBCC CHECKIDENT ('{tableName}', RESEED, {newSeedValue})");
+                }
+            }
             return Ok(data);
         }
         [HttpPost]
         [Route("/CreateEmergency")]
 
-        public async Task<IActionResult> CreateEmergency(int id)
+        public async Task<IActionResult> CreateEmergency(int id,string UserId)
         {
             var data = context.Codes.Find(id);
+            var username =await userManager.FindByIdAsync(UserId);
+            var department = context.Departments.Find(username.DepartmentId);
             var emer = new Emergencies()
             {
+                DepartmentName = department.Name,
+                NameOfUser = username.FirstName + " "+ username.LastName,
                 EmergencyCodeId = id,
                 EmergencyCode = data
             };

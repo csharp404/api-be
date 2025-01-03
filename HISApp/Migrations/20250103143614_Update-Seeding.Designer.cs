@@ -4,6 +4,7 @@ using HISApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HISApp.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250103143614_Update-Seeding")]
+    partial class UpdateSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -466,37 +469,42 @@ namespace HISApp.Migrations
                         new
                         {
                             Id = 3,
-                            Name = "Oncology"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Pediatrics"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Radiology"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Surgery"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Dermatology"
-                        },
-                        new
-                        {
-                            Id = 8,
                             Name = "Pharmacy"
                         },
                         new
                         {
+                            Id = 4,
+                            Name = "Oncology"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Pediatrics"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Radiology"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Surgery"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Emergency Medicine"
+                        },
+                        new
+                        {
                             Id = 9,
-                            Name = "Management"
+                            Name = "Dermatology"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Gastroenterology"
                         });
                 });
 
@@ -600,16 +608,8 @@ namespace HISApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("DepartmentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("EmergencyCodeId")
                         .HasColumnType("int");
-
-                    b.Property<string>("NameOfUser")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -722,8 +722,7 @@ namespace HISApp.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
@@ -742,11 +741,6 @@ namespace HISApp.Migrations
 
                     b.Property<int>("CityId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(2);
 
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");

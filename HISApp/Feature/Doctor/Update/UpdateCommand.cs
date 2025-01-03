@@ -16,7 +16,8 @@ public class RequestDoctorsQueryHandler(MyDbContext context, UserManager<Domain.
     {
         var user = await _userManager.FindByEmailAsync(request.usr.email);
 
-
+        user.FirstName = request.usr.FirstName;
+        user.LastName = request.usr.LastName;
             user.DepartmentId = request.usr.departmentid;
             user.Experience = request.usr.experience;
             user.PhoneNumber = request.usr.phonenumber;
