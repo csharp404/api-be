@@ -67,20 +67,21 @@ namespace HISApp.Data
             // Seed Areas
             builder.Entity<Area>().HasData(
       // Amman
+      // Amman
       new Area { Id = 1, Name = "Abdoun", CityId = 1 },
       new Area { Id = 2, Name = "Jabal Al-Weibdeh", CityId = 1 },
       new Area { Id = 3, Name = "Sweifieh", CityId = 1 },
       new Area { Id = 4, Name = "Dabouq", CityId = 1 },
 
       // Irbid
-      new Area { Id = 5, Name = "Al-Husn", CityId = 2 },
-      new Area { Id = 6, Name = "Al-Ramtha", CityId = 2 },
-      new Area { Id = 7, Name = "Downtown", CityId = 2 },
-      new Area { Id = 8, Name = "Bani Kinana", CityId = 2 },
+      new Area { Id = 5, Name = "Al-Husun", CityId = 2 },
+      new Area { Id = 6, Name = "Ar-Ramtha", CityId = 2 },
+      new Area { Id = 7, Name = "Al-barheh", CityId = 2 },
+      new Area { Id = 8, Name = "Ar-Rabieh", CityId = 2 },
 
       // Aqaba
-      new Area { Id = 9, Name = "Aqaba City Center", CityId = 3 },
-      new Area { Id = 10, Name = "Industrial Zone", CityId = 3 },
+      new Area { Id = 9, Name = "Al-Alamieh", CityId = 3 },
+      new Area { Id = 10, Name = "Ar-Remal", CityId = 3 },
       new Area { Id = 11, Name = "Southern Beach", CityId = 3 },
       new Area { Id = 12, Name = "Wadi Rum", CityId = 3 },
 
@@ -91,52 +92,53 @@ namespace HISApp.Data
       new Area { Id = 16, Name = "Hashemiyah", CityId = 4 },
 
       // Madaba
-      new Area { Id = 17, Name = "Madaba Center", CityId = 5 },
+      new Area { Id = 17, Name = "Theban", CityId = 5 },
       new Area { Id = 18, Name = "Mount Nebo", CityId = 5 },
       new Area { Id = 19, Name = "Al-Faisaliah", CityId = 5 },
       new Area { Id = 20, Name = "Ma'in", CityId = 5 },
 
       // Albalqa
-      new Area { Id = 21, Name = "Salt City Center", CityId = 6 },
+      new Area { Id = 21, Name = "Salt City", CityId = 6 },
       new Area { Id = 22, Name = "Fuheis", CityId = 6 },
       new Area { Id = 23, Name = "Ain Al-Basha", CityId = 6 },
       new Area { Id = 24, Name = "Mahes", CityId = 6 },
 
       // Mafraq
-      new Area { Id = 25, Name = "Mafraq City Center", CityId = 7 },
+      new Area { Id = 25, Name = "Hosha", CityId = 7 },
       new Area { Id = 26, Name = "Al-Khalidiya", CityId = 7 },
-      new Area { Id = 27, Name = "Ruwaished", CityId = 7 },
-      new Area { Id = 28, Name = "Um Al-Jimal", CityId = 7 },
+      new Area { Id = 27, Name = "Rubwa Bani Khaled", CityId = 7 },
+      new Area { Id = 28, Name = "Um Al-Jimmal", CityId = 7 },
 
       // Tafilah
-      new Area { Id = 29, Name = "Tafilah City Center", CityId = 8 },
+      new Area { Id = 29, Name = "Tafila City", CityId = 8 },
       new Area { Id = 30, Name = "Busaira", CityId = 8 },
       new Area { Id = 31, Name = "Al-Hasa", CityId = 8 },
       new Area { Id = 32, Name = "Dana", CityId = 8 },
 
       // Karak
-      new Area { Id = 33, Name = "Karak City Center", CityId = 9 },
+      new Area { Id = 33, Name = "Karaq Castle", CityId = 9 },
       new Area { Id = 34, Name = "Al-Qasr", CityId = 9 },
       new Area { Id = 35, Name = "Mu'tah", CityId = 9 },
       new Area { Id = 36, Name = "Al-Mazar", CityId = 9 },
 
       // Jerash
-      new Area { Id = 37, Name = "Jerash City Center", CityId = 10 },
-      new Area { Id = 38, Name = "Souf", CityId = 10 },
+      new Area { Id = 37, Name = "Bab Amman", CityId = 10 },
+      new Area { Id = 38, Name = "Souf camp", CityId = 10 },
       new Area { Id = 39, Name = "Sakib", CityId = 10 },
       new Area { Id = 40, Name = "Al-Kitta", CityId = 10 },
 
       // Ma'an
-      new Area { Id = 41, Name = "Ma'an City Center", CityId = 11 },
+      new Area { Id = 41, Name = "Alghadeer", CityId = 11 },
       new Area { Id = 42, Name = "Petra", CityId = 11 },
       new Area { Id = 43, Name = "Shobak", CityId = 11 },
       new Area { Id = 44, Name = "Al-Husseinieh", CityId = 11 },
 
       // Ajloun
-      new Area { Id = 45, Name = "Ajloun City Center", CityId = 12 },
+      new Area { Id = 45, Name = "ras Mounief", CityId = 12 },
       new Area { Id = 46, Name = "Anjara", CityId = 12 },
       new Area { Id = 47, Name = "Al-Wahadneh", CityId = 12 },
       new Area { Id = 48, Name = "Kufranjah", CityId = 12 }
+
   );
 
             // Seed Departments
