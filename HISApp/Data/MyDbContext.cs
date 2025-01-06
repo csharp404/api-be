@@ -245,9 +245,10 @@ namespace HISApp.Data
                     Color = "#F28C3A",
                     Code = "Code ORANGE"
                 }
-
+                
 
             );
+            
         }
 
     
