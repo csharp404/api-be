@@ -20,7 +20,7 @@ public class RequestGetAllQueryHandler(MyDbContext context) : IRequestHandler<Re
             .Include(x=>x.Area).Where(x=>x.IsDeleted==false).ToListAsync();
             var d =  data.Select(x=>new GetPatientDto
             {
-                
+                AreaName = x.Area.Name,cityName = x.City.Name,
                 age = x.Age,
                 name = x.FirstName +" "+x.LastName,
                 address = x.City.Name+", "+x.Area.Name,
@@ -30,7 +30,7 @@ public class RequestGetAllQueryHandler(MyDbContext context) : IRequestHandler<Re
                 id = x.Id,
                 pcd = x.User.FirstName + " " +x.User.LastName,
                 phoneNumber = x.PhoneNumber,
-                Code  = "p2h"+x.Code.ToString().Substring(0,8),
+                Code  = x.Code.ToString().Substring(0,8),
                 
             });
 

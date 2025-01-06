@@ -13,6 +13,8 @@ public class GetPatientDto
         public int age { get; set; }
         public DateTime admissionDate { get; set; }
         public string Code { set; get; }
+        public string? cityName { set; get; }
+        public string? AreaName { set; get; }
 
 
 }

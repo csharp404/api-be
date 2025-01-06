@@ -243,8 +243,8 @@ namespace HISApp.Controllers
                 duration = sic.duration,
                 endDate = sic.end,
                 startDate = sic.start,
-                CreatedAt = sic.CreatedAt
-                
+                CreatedAt = sic.CreatedAt,
+                PatientName = sic.Patient.FirstName + " " + sic.Patient.LastName
             };
             return Ok(data);
         }
@@ -262,7 +262,8 @@ namespace HISApp.Controllers
                     duration = sic.duration,
                     endDate = sic.end,
                     startDate = sic.start,
-                    CreatedAt = sic.CreatedAt
+                    CreatedAt = sic.CreatedAt,
+                    PatientName = sic.Patient.FirstName + " " + sic.Patient.LastName
                 });
            
             return Ok(sic);

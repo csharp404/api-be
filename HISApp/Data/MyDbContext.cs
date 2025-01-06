@@ -76,7 +76,7 @@ namespace HISApp.Data
       // Irbid
       new Area { Id = 5, Name = "Al-Husun", CityId = 2 },
       new Area { Id = 6, Name = "Ar-Ramtha", CityId = 2 },
-      new Area { Id = 7, Name = "Al-barheh", CityId = 2 },
+      new Area { Id = 7, Name = "Al-Barheh", CityId = 2 },
       new Area { Id = 8, Name = "Ar-Rabieh", CityId = 2 },
 
       // Aqaba
@@ -116,14 +116,14 @@ namespace HISApp.Data
       new Area { Id = 32, Name = "Dana", CityId = 8 },
 
       // Karak
-      new Area { Id = 33, Name = "Karaq Castle", CityId = 9 },
+      new Area { Id = 33, Name = "Karak Castle", CityId = 9 },
       new Area { Id = 34, Name = "Al-Qasr", CityId = 9 },
       new Area { Id = 35, Name = "Mu'tah", CityId = 9 },
       new Area { Id = 36, Name = "Al-Mazar", CityId = 9 },
 
       // Jerash
       new Area { Id = 37, Name = "Bab Amman", CityId = 10 },
-      new Area { Id = 38, Name = "Souf camp", CityId = 10 },
+      new Area { Id = 38, Name = "Souf Camp", CityId = 10 },
       new Area { Id = 39, Name = "Sakib", CityId = 10 },
       new Area { Id = 40, Name = "Al-Kitta", CityId = 10 },
 
@@ -134,7 +134,7 @@ namespace HISApp.Data
       new Area { Id = 44, Name = "Al-Husseinieh", CityId = 11 },
 
       // Ajloun
-      new Area { Id = 45, Name = "ras Mounief", CityId = 12 },
+      new Area { Id = 45, Name = "Ras Mounief", CityId = 12 },
       new Area { Id = 46, Name = "Anjara", CityId = 12 },
       new Area { Id = 47, Name = "Al-Wahadneh", CityId = 12 },
       new Area { Id = 48, Name = "Kufranjah", CityId = 12 }
@@ -172,6 +172,7 @@ namespace HISApp.Data
                 .WithMany()
                 .HasForeignKey(p => p.DepartmentId)
                 .OnDelete(DeleteBehavior.Restrict);
+
             builder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
@@ -248,7 +249,99 @@ namespace HISApp.Data
                 
 
             );
+
+
+            #region seeduser
+
             
+
+            // Seed Users
+            var passwordHasher = new PasswordHasher<User>();
+            var users = new List<User>
+    {
+        new User
+        { DepartmentId = 1,
+            FirstName = "Doctor",
+            LastName = "Ahmad",
+            UserName = "d@d.d",
+            NormalizedUserName = "D@D.D",
+            Email = "d@d.d",
+            NormalizedEmail = "D@D.D",
+            PhoneNumber = "1234567890",
+            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd")
+           
+        },
+        new User
+        { DepartmentId = 1,
+            FirstName = "Nurse",
+            LastName = "Sameera",
+            UserName = "n@n.n",
+            NormalizedUserName = "N@N.N",
+            Email = "n@n.n",
+            NormalizedEmail = "N@N.N",
+            PhoneNumber = "0987654321",
+            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") 
+        },
+        new User
+        {
+            DepartmentId = 9,
+            FirstName = "Manager",
+            LastName = "Mohammad",
+            UserName = "m@m.m",
+            NormalizedUserName = "M@M.M",
+            Email = "m@m.m",
+            NormalizedEmail = "M@M.M",
+            PhoneNumber = "4561237890",
+            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") 
+        },
+        new User
+        {DepartmentId = 8,
+            FirstName = "Pharmacist",
+            LastName = "Ayham",
+            UserName = "p@p.p",
+            NormalizedUserName = "P@P.P",
+            Email = "p@p.p",
+            NormalizedEmail = "P@P.P",
+            PhoneNumber = "7894561230",
+            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") 
+        },
+        new User
+        {
+            DepartmentId = 1,
+            FirstName = "Admin",
+            LastName = "Yousef",
+            UserName = "a@a.a",
+            NormalizedUserName = "A@A.A",
+            Email = "a@a.a",
+            NormalizedEmail = "A@A.A",
+            PhoneNumber = "3216549870",
+            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") 
+        }
+    };
+            builder.Entity<User>().HasData(users);
+            var addresses = new List<Address>
+            {
+                new Address { AreaId = 1, CityId = 1, UserId = users[0].Id },
+                new Address { AreaId = 1, CityId = 1, UserId = users[1].Id },
+                new Address { AreaId = 1, CityId = 1, UserId = users[2].Id },
+                new Address { AreaId = 1, CityId = 1, UserId = users[3].Id },
+                new Address { AreaId = 1, CityId = 1, UserId = users[4].Id }
+            };
+            builder.Entity<Address>().HasData(addresses);
+
+            // Seed User Roles
+            var userRoles = new List<IdentityUserRole<string>>
+    {
+        new IdentityUserRole<string> { UserId = users[0].Id, RoleId = "1" }, // Doctor
+        new IdentityUserRole<string> { UserId = users[1].Id, RoleId = "2" }, // Nurse
+        new IdentityUserRole<string> { UserId = users[2].Id, RoleId = "3" }, // ManagementStaff
+        new IdentityUserRole<string> { UserId = users[3].Id, RoleId = "4" }, // Pharmacist
+        new IdentityUserRole<string> { UserId = users[4].Id, RoleId = "5" }  // Admin
+    };
+            builder.Entity<IdentityUserRole<string>>().HasData(userRoles);
+
+            #endregion
+
         }
 
     

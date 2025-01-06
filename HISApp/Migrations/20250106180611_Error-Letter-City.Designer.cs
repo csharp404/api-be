@@ -4,6 +4,7 @@ using HISApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HISApp.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250106180611_Error-Letter-City")]
+    partial class ErrorLetterCity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,43 +46,6 @@ namespace HISApp.Migrations
                         .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Addresses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("058fb2cf-9c80-4d9b-83a7-639488cc6342"),
-                            AreaId = 1,
-                            CityId = 1,
-                            UserId = "96aaaade-b4ca-43b6-8afe-dac218f22ecc"
-                        },
-                        new
-                        {
-                            Id = new Guid("2c371044-fbda-4fc3-b89d-799385947ab2"),
-                            AreaId = 1,
-                            CityId = 1,
-                            UserId = "1c9134a1-ffa3-4ba9-806f-1bc9c6a40487"
-                        },
-                        new
-                        {
-                            Id = new Guid("1da6ae9e-04ed-4c1c-84a9-bf005ea05e23"),
-                            AreaId = 1,
-                            CityId = 1,
-                            UserId = "48fedb94-6b86-4cc9-9bb7-f541ef628e04"
-                        },
-                        new
-                        {
-                            Id = new Guid("53125a5a-e5e3-4ecc-b36c-f3c325ded6f1"),
-                            AreaId = 1,
-                            CityId = 1,
-                            UserId = "fc1ad53c-ca87-429d-9b85-24aa0853d016"
-                        },
-                        new
-                        {
-                            Id = new Guid("11ec1d7a-5b99-4147-9c20-5717585dfb68"),
-                            AreaId = 1,
-                            CityId = 1,
-                            UserId = "e9cd048e-920d-478b-a8b2-80a8b0ee7291"
-                        });
                 });
 
             modelBuilder.Entity("HISApp.Domain.Area", b =>
@@ -144,7 +110,7 @@ namespace HISApp.Migrations
                         {
                             Id = 7,
                             CityId = 2,
-                            Name = "Al-Barheh"
+                            Name = "Al-barheh"
                         },
                         new
                         {
@@ -330,7 +296,7 @@ namespace HISApp.Migrations
                         {
                             Id = 38,
                             CityId = 10,
-                            Name = "Souf Camp"
+                            Name = "Souf camp"
                         },
                         new
                         {
@@ -372,7 +338,7 @@ namespace HISApp.Migrations
                         {
                             Id = 45,
                             CityId = 12,
-                            Name = "Ras Mounief"
+                            Name = "ras Mounief"
                         },
                         new
                         {
@@ -1005,113 +971,6 @@ namespace HISApp.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "96aaaade-b4ca-43b6-8afe-dac218f22ecc",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "b2e0e36f-f29d-491a-b571-001915f76c35",
-                            DepartmentId = 1,
-                            Email = "d@d.d",
-                            EmailConfirmed = false,
-                            FirstName = "Doctor",
-                            HireDate = new DateTime(2025, 1, 6, 23, 30, 57, 116, DateTimeKind.Local).AddTicks(9901),
-                            LastName = "Ahmad",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "D@D.D",
-                            NormalizedUserName = "D@D.D",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFmAUjZzKv8SVq76cxFmKXLbfervIMr63Cs92tcXkCoc273iV81YI7J/e+rNHTK5Xg==",
-                            PhoneNumber = "1234567890",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "a3cc1905-a1c7-478a-a03f-9b9a09af0f22",
-                            TwoFactorEnabled = false,
-                            UserName = "d@d.d"
-                        },
-                        new
-                        {
-                            Id = "1c9134a1-ffa3-4ba9-806f-1bc9c6a40487",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "5bdff36d-40da-4b6d-854e-8e0db0ceedfc",
-                            DepartmentId = 1,
-                            Email = "n@n.n",
-                            EmailConfirmed = false,
-                            FirstName = "Nurse",
-                            HireDate = new DateTime(2025, 1, 6, 23, 30, 57, 164, DateTimeKind.Local).AddTicks(2662),
-                            LastName = "Sameera",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "N@N.N",
-                            NormalizedUserName = "N@N.N",
-                            PasswordHash = "AQAAAAIAAYagAAAAENr+IsCMzMaaQfNYP1oZ7bx2LVTmNPfDh/tjYuP0DJf0e6VriM1e8Uf6Hgz50ecJ9g==",
-                            PhoneNumber = "0987654321",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "46e15e6d-6b9e-4a31-bab3-453afb964d8f",
-                            TwoFactorEnabled = false,
-                            UserName = "n@n.n"
-                        },
-                        new
-                        {
-                            Id = "48fedb94-6b86-4cc9-9bb7-f541ef628e04",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "3922b4df-87dd-4613-9350-d02359f2c77d",
-                            DepartmentId = 9,
-                            Email = "m@m.m",
-                            EmailConfirmed = false,
-                            FirstName = "Manager",
-                            HireDate = new DateTime(2025, 1, 6, 23, 30, 57, 214, DateTimeKind.Local).AddTicks(4966),
-                            LastName = "Mohammad",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "M@M.M",
-                            NormalizedUserName = "M@M.M",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJJwpjEGVYmBVuLlavlwVvRGA3nMp12/bsqVQKjYTsp/OENdTRdNQiKMhH8bjkS7MQ==",
-                            PhoneNumber = "4561237890",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "9c292c0c-428b-465b-9002-8f68575401d5",
-                            TwoFactorEnabled = false,
-                            UserName = "m@m.m"
-                        },
-                        new
-                        {
-                            Id = "fc1ad53c-ca87-429d-9b85-24aa0853d016",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "0eb94951-24ec-4bb0-bd76-c32d2403fd94",
-                            DepartmentId = 8,
-                            Email = "p@p.p",
-                            EmailConfirmed = false,
-                            FirstName = "Pharmacist",
-                            HireDate = new DateTime(2025, 1, 6, 23, 30, 57, 264, DateTimeKind.Local).AddTicks(4224),
-                            LastName = "Ayham",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "P@P.P",
-                            NormalizedUserName = "P@P.P",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE5yE2vthdUSYCkM5dgo1s/t8lqeIXFC8RUtrk6yJh6pvxOLeap0R2REayUsPrBcFA==",
-                            PhoneNumber = "7894561230",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "e19e48f4-060f-488e-ba06-5685dc6e9544",
-                            TwoFactorEnabled = false,
-                            UserName = "p@p.p"
-                        },
-                        new
-                        {
-                            Id = "e9cd048e-920d-478b-a8b2-80a8b0ee7291",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "3e7f16a8-5e76-4036-b26a-bc07697d2c4f",
-                            DepartmentId = 1,
-                            Email = "a@a.a",
-                            EmailConfirmed = false,
-                            FirstName = "Admin",
-                            HireDate = new DateTime(2025, 1, 6, 23, 30, 57, 322, DateTimeKind.Local).AddTicks(4830),
-                            LastName = "Yousef",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "A@A.A",
-                            NormalizedUserName = "A@A.A",
-                            PasswordHash = "AQAAAAIAAYagAAAAEACzu6DgaXX2DfX8hvAng9d4xmU0GKJORLPSGGNIyUEeJmdn0VqO26+XehUmGprw5w==",
-                            PhoneNumber = "3216549870",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "8ad87687-2320-4892-bed5-e9bfb9da0bdb",
-                            TwoFactorEnabled = false,
-                            UserName = "a@a.a"
-                        });
                 });
 
             modelBuilder.Entity("HISApp.Domain.VitalSigns", b =>
@@ -1292,33 +1151,6 @@ namespace HISApp.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "96aaaade-b4ca-43b6-8afe-dac218f22ecc",
-                            RoleId = "1"
-                        },
-                        new
-                        {
-                            UserId = "1c9134a1-ffa3-4ba9-806f-1bc9c6a40487",
-                            RoleId = "2"
-                        },
-                        new
-                        {
-                            UserId = "48fedb94-6b86-4cc9-9bb7-f541ef628e04",
-                            RoleId = "3"
-                        },
-                        new
-                        {
-                            UserId = "fc1ad53c-ca87-429d-9b85-24aa0853d016",
-                            RoleId = "4"
-                        },
-                        new
-                        {
-                            UserId = "e9cd048e-920d-478b-a8b2-80a8b0ee7291",
-                            RoleId = "5"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

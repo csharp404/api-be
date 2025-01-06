@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Eventing.Reader;
 using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Claims;
 using System.Text;
 using HISApp.Constants;
@@ -45,6 +46,12 @@ namespace HISApp.DTOs
                 //Specialization = user.Specialization,
                 //ImagePath = path
             };
+            
+           
+             
+
+            
+
 
             string role = GetRoleName(user.Role);
             var res = await userManager.CreateAsync(usr, user.Password);

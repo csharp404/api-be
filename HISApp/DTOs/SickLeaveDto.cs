@@ -7,6 +7,6 @@ public class SickLeaveDto
     public DateTime endDate { get; set; }
     public string reason { get; set; }
     public int PatientId { set; get; }
-
+    public string? PatientName { set; get; }
     public DateTime CreatedAt { set; get; }
 }
