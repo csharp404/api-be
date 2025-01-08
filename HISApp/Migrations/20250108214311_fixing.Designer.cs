@@ -4,6 +4,7 @@ using HISApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HISApp.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250108214311_fixing")]
+    partial class fixing
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,38 +50,38 @@ namespace HISApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9cec542b-d7a6-4f3e-a1c9-604bca3fb60c"),
+                            Id = new Guid("0699e4af-6a8b-4647-80f9-f567610901ae"),
                             AreaId = 1,
                             CityId = 1,
-                            UserId = "3acc729d-1693-400f-adb3-382c9419d50c"
+                            UserId = "e386740c-cd9b-40e8-88b0-455bd4769f59"
                         },
                         new
                         {
-                            Id = new Guid("49b301b7-839a-4d34-9e51-53732be5931f"),
+                            Id = new Guid("bb2f8927-6eec-4f59-85ba-7fa71af0d4e9"),
                             AreaId = 1,
                             CityId = 1,
-                            UserId = "cef369e2-8698-450b-818a-46a5733a2e23"
+                            UserId = "cea7eb50-7d7e-4515-8830-f9d3f3e80753"
                         },
                         new
                         {
-                            Id = new Guid("6636824e-d494-481f-ab8d-48e7ec49e3c8"),
+                            Id = new Guid("5531533d-5e32-49cf-bbce-c599db02c5a3"),
                             AreaId = 1,
                             CityId = 1,
-                            UserId = "27dd180e-4a4c-4c3f-849d-f61e0a846cc6"
+                            UserId = "f42cf095-eed2-4f46-87f8-8abcb25eb59f"
                         },
                         new
                         {
-                            Id = new Guid("174bdefa-6914-4a9b-9939-11dcd43b671f"),
+                            Id = new Guid("a0219a68-9759-4d19-b69b-b06ab2734e37"),
                             AreaId = 1,
                             CityId = 1,
-                            UserId = "dcb6dc20-faac-4a60-a0be-d4204016f5fc"
+                            UserId = "5e23e00a-b0fc-4b3e-9a7f-bb9a5250e0ee"
                         },
                         new
                         {
-                            Id = new Guid("b6b7ac1f-bab4-4594-adc4-2254cf90ef9a"),
+                            Id = new Guid("0ccd5f8b-c033-42d3-9865-be981abb1344"),
                             AreaId = 1,
                             CityId = 1,
-                            UserId = "955c02e9-e68f-49db-a6dd-f520c4d35cdc"
+                            UserId = "974350b0-5ecb-4015-8825-19f190c268bc"
                         });
                 });
 
@@ -1009,126 +1012,111 @@ namespace HISApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3acc729d-1693-400f-adb3-382c9419d50c",
+                            Id = "e386740c-cd9b-40e8-88b0-455bd4769f59",
                             AccessFailedCount = 0,
-                            AddressId = new Guid("9cec542b-d7a6-4f3e-a1c9-604bca3fb60c"),
-                            Age = 40,
-                            ConcurrencyStamp = "9dfa94be-c170-4665-b05d-2db613cc2d1a",
+                            AddressId = new Guid("0699e4af-6a8b-4647-80f9-f567610901ae"),
+                            ConcurrencyStamp = "0924f4b2-4792-4237-93ca-8280d7bee886",
                             DepartmentId = 1,
                             Email = "d@p2h.com",
                             EmailConfirmed = false,
-                            Experience = "12",
                             FirstName = "Doctor",
-                            Gender = true,
-                            HireDate = new DateTime(2025, 1, 9, 0, 47, 1, 551, DateTimeKind.Local).AddTicks(3444),
+                            HireDate = new DateTime(2025, 1, 9, 0, 43, 10, 998, DateTimeKind.Local).AddTicks(2676),
                             LastName = "Ahmad",
                             LockoutEnabled = false,
                             NormalizedEmail = "d@p2h.com",
                             NormalizedUserName = "d@p2h.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOungGC2cr7X1K9i0+bSd31Jdcfh5tpcYXHRlo4ctCCmhtPV8P/NqX6p9Ovh32LNHA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEETXpoh3EVZot3ta8+ciHRpLKteQvTiXIli/F6KyTvSovxDwNSYKI/2w3LbvUFOGng==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8839dd94-5f1f-47ac-a179-702f74d73531",
+                            SecurityStamp = "6d79b5a6-63a5-403a-8305-a0aa7b4bb2a9",
                             TwoFactorEnabled = false,
                             UserName = "d@p2h.com"
                         },
                         new
                         {
-                            Id = "cef369e2-8698-450b-818a-46a5733a2e23",
+                            Id = "cea7eb50-7d7e-4515-8830-f9d3f3e80753",
                             AccessFailedCount = 0,
-                            AddressId = new Guid("49b301b7-839a-4d34-9e51-53732be5931f"),
-                            Age = 45,
-                            ConcurrencyStamp = "c519c7d2-b926-4448-a74e-4005d77fd7e0",
+                            AddressId = new Guid("bb2f8927-6eec-4f59-85ba-7fa71af0d4e9"),
+                            ConcurrencyStamp = "5fec403c-276d-4e6b-b49c-fc7150ca2ec0",
                             DepartmentId = 1,
                             Email = "n@p2h.com",
                             EmailConfirmed = false,
-                            Experience = "12",
                             FirstName = "Nurse",
-                            Gender = false,
-                            HireDate = new DateTime(2025, 1, 9, 0, 47, 1, 599, DateTimeKind.Local).AddTicks(803),
+                            HireDate = new DateTime(2025, 1, 9, 0, 43, 11, 45, DateTimeKind.Local).AddTicks(4501),
                             LastName = "Sameera",
                             LockoutEnabled = false,
                             NormalizedEmail = "n@p2h.com",
                             NormalizedUserName = "n@p2h.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAELj9Z9ASuQLt1woAcB433FPzdhoDPQve5gnv/5ux6kJDFtpw+4ePx6o4PtVkMtyptg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAMvqqoL4x/Nw+z1Wv9XRtJ/93qLKbaEQKItbxtqEOMRlfLoqfNtpV7gkdfZJ7TAlw==",
                             PhoneNumber = "0987654321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bc1c35bc-ebe3-4d25-94b1-0a280fe751f0",
+                            SecurityStamp = "c8fa9867-7308-4c89-b323-afed432f90a6",
                             TwoFactorEnabled = false,
                             UserName = "n@p2h.com"
                         },
                         new
                         {
-                            Id = "27dd180e-4a4c-4c3f-849d-f61e0a846cc6",
+                            Id = "f42cf095-eed2-4f46-87f8-8abcb25eb59f",
                             AccessFailedCount = 0,
-                            AddressId = new Guid("6636824e-d494-481f-ab8d-48e7ec49e3c8"),
-                            Age = 40,
-                            ConcurrencyStamp = "babb59de-5674-41ff-bb1e-85e86623947a",
+                            AddressId = new Guid("5531533d-5e32-49cf-bbce-c599db02c5a3"),
+                            ConcurrencyStamp = "d6c97ea8-3961-4280-ad88-f958828b92ae",
                             DepartmentId = 9,
                             Email = "m@p2h.com",
                             EmailConfirmed = false,
-                            Experience = "12",
                             FirstName = "Manager",
-                            Gender = true,
-                            HireDate = new DateTime(2025, 1, 9, 0, 47, 1, 646, DateTimeKind.Local).AddTicks(5271),
+                            HireDate = new DateTime(2025, 1, 9, 0, 43, 11, 93, DateTimeKind.Local).AddTicks(4816),
                             LastName = "Mohammad",
                             LockoutEnabled = false,
                             NormalizedEmail = "m@p2h.com",
                             NormalizedUserName = "m@p2h.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGg3WeeHYutj0StKGLTVvBIhctQhhVRWZz0wPYeTPyift9kj4k0S/3B17gsR/LniJw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELN+eBne+CtbA9ZHJerXiepVbrJBvfLugUr+TOlTHtJIjDNb0WzG4L6bW5ftSNVYPg==",
                             PhoneNumber = "4561237890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8bedf043-f18a-4101-a082-9bef10f0f491",
+                            SecurityStamp = "ff0e5142-8586-4ffb-9cf4-9e46dec0665c",
                             TwoFactorEnabled = false,
                             UserName = "m@p2h.com"
                         },
                         new
                         {
-                            Id = "dcb6dc20-faac-4a60-a0be-d4204016f5fc",
+                            Id = "5e23e00a-b0fc-4b3e-9a7f-bb9a5250e0ee",
                             AccessFailedCount = 0,
-                            AddressId = new Guid("174bdefa-6914-4a9b-9939-11dcd43b671f"),
-                            Age = 33,
-                            ConcurrencyStamp = "9121858a-6ecb-44c4-9251-f28fb11ecdab",
+                            AddressId = new Guid("a0219a68-9759-4d19-b69b-b06ab2734e37"),
+                            ConcurrencyStamp = "82c7fe41-380e-47db-9205-a88694f2c303",
                             DepartmentId = 8,
                             Email = "p@p2h.com",
                             EmailConfirmed = false,
-                            Experience = "12",
                             FirstName = "Pharmacist",
-                            Gender = true,
-                            HireDate = new DateTime(2025, 1, 9, 0, 47, 1, 695, DateTimeKind.Local).AddTicks(312),
+                            HireDate = new DateTime(2025, 1, 9, 0, 43, 11, 150, DateTimeKind.Local).AddTicks(1292),
                             LastName = "Ayham",
                             LockoutEnabled = false,
                             NormalizedEmail = "p@p2h.com",
                             NormalizedUserName = "p@p2h.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIB5BEaauUFZfKej1+O34b92zl/zXLlpgMx1qCSx5gOOl/ZhKCPLhi6tegBt6U2rxw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED1YcEf6y08gDvQy13QS8vSJgYCJxFEw47JsMSIT8DmTOYBBT/VhKrp7PnPtS/KCBA==",
                             PhoneNumber = "7894561230",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ef433250-d9d0-4d5d-b839-85adb519f337",
+                            SecurityStamp = "62a157ae-1202-4115-a8ad-1273f3ff711c",
                             TwoFactorEnabled = false,
                             UserName = "p@p2h.com"
                         },
                         new
                         {
-                            Id = "955c02e9-e68f-49db-a6dd-f520c4d35cdc",
+                            Id = "974350b0-5ecb-4015-8825-19f190c268bc",
                             AccessFailedCount = 0,
-                            AddressId = new Guid("b6b7ac1f-bab4-4594-adc4-2254cf90ef9a"),
-                            Age = 26,
-                            ConcurrencyStamp = "3c16b6d9-2a3f-4f13-9244-3e17c13dfc7d",
+                            AddressId = new Guid("0ccd5f8b-c033-42d3-9865-be981abb1344"),
+                            ConcurrencyStamp = "2fe0579c-00d0-416b-a4c0-fbf7b23ba73d",
                             DepartmentId = 1,
                             Email = "a@p2h.com",
                             EmailConfirmed = false,
-                            Experience = "12",
                             FirstName = "Admin",
-                            Gender = true,
-                            HireDate = new DateTime(2025, 1, 9, 0, 47, 1, 743, DateTimeKind.Local).AddTicks(2478),
+                            HireDate = new DateTime(2025, 1, 9, 0, 43, 11, 204, DateTimeKind.Local).AddTicks(1110),
                             LastName = "Yousef",
                             LockoutEnabled = false,
                             NormalizedEmail = "A@P2H.COM",
                             NormalizedUserName = "a@p2h.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGotzpXVdyZrmzZKsgIDLqmse5O1jDQ7A1dxB9VBpIU/DDorNzaiF90w7FLrjsWcEw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDUybBzosYBRm/K1ufky5BTwCiVn/UYv2Iup6hfdfDG7EilmosZX7n3GZePmOYGeCA==",
                             PhoneNumber = "3216549870",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7172b752-d546-4d32-a429-f08609b53adb",
+                            SecurityStamp = "35281e7c-37e0-439a-8ab6-9deb9585b445",
                             TwoFactorEnabled = false,
                             UserName = "a@p2h.com"
                         });
@@ -1316,27 +1304,27 @@ namespace HISApp.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "3acc729d-1693-400f-adb3-382c9419d50c",
+                            UserId = "e386740c-cd9b-40e8-88b0-455bd4769f59",
                             RoleId = "1"
                         },
                         new
                         {
-                            UserId = "cef369e2-8698-450b-818a-46a5733a2e23",
+                            UserId = "cea7eb50-7d7e-4515-8830-f9d3f3e80753",
                             RoleId = "2"
                         },
                         new
                         {
-                            UserId = "27dd180e-4a4c-4c3f-849d-f61e0a846cc6",
+                            UserId = "f42cf095-eed2-4f46-87f8-8abcb25eb59f",
                             RoleId = "3"
                         },
                         new
                         {
-                            UserId = "dcb6dc20-faac-4a60-a0be-d4204016f5fc",
+                            UserId = "5e23e00a-b0fc-4b3e-9a7f-bb9a5250e0ee",
                             RoleId = "4"
                         },
                         new
                         {
-                            UserId = "955c02e9-e68f-49db-a6dd-f520c4d35cdc",
+                            UserId = "974350b0-5ecb-4015-8825-19f190c268bc",
                             RoleId = "5"
                         });
                 });

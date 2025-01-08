@@ -263,62 +263,71 @@ namespace HISApp.Data
         { DepartmentId = 1,
             FirstName = "Doctor",
             LastName = "Ahmad",
-            UserName = "d@d.d",
-            NormalizedUserName = "D@D.D",
-            Email = "d@d.d",
-            NormalizedEmail = "D@D.D",
-            PhoneNumber = "1234567890",
-            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd")
-           
+            UserName = "d@p2h.com",
+            NormalizedUserName = "d@p2h.com",
+            Email = "d@p2h.com",
+            NormalizedEmail = "d@p2h.com",
+            PhoneNumber = "0781221223",
+            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd"),
+            Experience = "12",
+            Gender = true,Age = 40
+
         },
         new User
         { DepartmentId = 1,
             FirstName = "Nurse",
             LastName = "Sameera",
-            UserName = "n@n.n",
-            NormalizedUserName = "N@N.N",
-            Email = "n@n.n",
-            NormalizedEmail = "N@N.N",
-            PhoneNumber = "0987654321",
-            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") 
+            UserName = "n@p2h.com",
+            NormalizedUserName = "n@p2h.com",
+            Email = "n@p2h.com",
+            NormalizedEmail = "n@p2h.com",
+            PhoneNumber = "0781227894",
+            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") ,
+            Experience = "12",
+            Gender = false,Age = 45
         },
         new User
         {
             DepartmentId = 9,
             FirstName = "Manager",
             LastName = "Mohammad",
-            UserName = "m@m.m",
-            NormalizedUserName = "M@M.M",
-            Email = "m@m.m",
-            NormalizedEmail = "M@M.M",
-            PhoneNumber = "4561237890",
-            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") 
+            UserName = "m@p2h.com",
+            NormalizedUserName = "m@p2h.com",
+            Email = "m@p2h.com",
+            NormalizedEmail = "m@p2h.com",
+            PhoneNumber = "0781221244",
+            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") ,
+            Experience = "12",
+            Gender = true,Age = 40
         },
         new User
         {DepartmentId = 8,
             FirstName = "Pharmacist",
             LastName = "Ayham",
-            UserName = "p@p.p",
-            NormalizedUserName = "P@P.P",
-            Email = "p@p.p",
-            NormalizedEmail = "P@P.P",
-            PhoneNumber = "7894561230",
-            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") 
+            UserName = "p@p2h.com",
+            NormalizedUserName = "p@p2h.com",
+            Email = "p@p2h.com",
+            NormalizedEmail = "p@p2h.com",
+            PhoneNumber = "0781227894",
+            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") ,
+            Experience = "12",
+            Gender = true,Age = 33
         },
         new User
         {
             DepartmentId = 1,
             FirstName = "Admin",
             LastName = "Yousef",
-            UserName = "a@a.a",
-            NormalizedUserName = "A@A.A",
-            Email = "a@a.a",
-            NormalizedEmail = "A@A.A",
-            PhoneNumber = "3216549870",
-            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") 
+            UserName = "a@p2h.com",
+            NormalizedUserName = "a@p2h.com",
+            Email = "a@p2h.com",
+            NormalizedEmail = "A@P2H.COM",
+            PhoneNumber = "0781224567",
+            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") ,
+            Experience = "12",
+            Gender = true,Age = 26
         }
     };
-            builder.Entity<User>().HasData(users);
             var addresses = new List<Address>
             {
                 new Address { AreaId = 1, CityId = 1, UserId = users[0].Id },
@@ -328,6 +337,11 @@ namespace HISApp.Data
                 new Address { AreaId = 1, CityId = 1, UserId = users[4].Id }
             };
             builder.Entity<Address>().HasData(addresses);
+            for (int i = 0; i < users.Count(); i++)
+            {
+                users[i].AddressId = addresses[i].Id;
+            }
+            builder.Entity<User>().HasData(users);
 
             // Seed User Roles
             var userRoles = new List<IdentityUserRole<string>>
