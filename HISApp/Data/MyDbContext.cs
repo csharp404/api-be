@@ -39,7 +39,7 @@ namespace HISApp.Data
 
 
             //builder.Entity<IdentityRole>().ToTable("Role"); // Rename AspNetRoles to Role
-            //builder.Entity<IdentityUser>().ToTable("User"); // Rename AspNetUsers to User
+           
             //builder.Entity<IdentityUserRole<string>>().ToTable("UserRole"); // Rename AspNetUserRoles to UserRole
             //builder.Entity<IdentityUserClaim<string>>().ToTable("UserClaim"); // Rename AspNetUserClaims to UserClaim
             //builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogin"); // Rename AspNetUserLogins to UserLogin
@@ -258,76 +258,88 @@ namespace HISApp.Data
             // Seed Users
             var passwordHasher = new PasswordHasher<User>();
             var users = new List<User>
+{
+    new User
     {
-        new User
-        { DepartmentId = 1,
-            FirstName = "Doctor",
-            LastName = "Ahmad",
-            UserName = "d@p2h.com",
-            NormalizedUserName = "d@p2h.com",
-            Email = "d@p2h.com",
-            NormalizedEmail = "d@p2h.com",
-            PhoneNumber = "0781221223",
-            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd"),
-            Experience = "12",
-            Gender = true,Age = 40
-
-        },
-        new User
-        { DepartmentId = 1,
-            FirstName = "Nurse",
-            LastName = "Sameera",
-            UserName = "n@p2h.com",
-            NormalizedUserName = "n@p2h.com",
-            Email = "n@p2h.com",
-            NormalizedEmail = "n@p2h.com",
-            PhoneNumber = "0781227894",
-            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") ,
-            Experience = "12",
-            Gender = false,Age = 45
-        },
-        new User
-        {
-            DepartmentId = 9,
-            FirstName = "Manager",
-            LastName = "Mohammad",
-            UserName = "m@p2h.com",
-            NormalizedUserName = "m@p2h.com",
-            Email = "m@p2h.com",
-            NormalizedEmail = "m@p2h.com",
-            PhoneNumber = "0781221244",
-            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") ,
-            Experience = "12",
-            Gender = true,Age = 40
-        },
-        new User
-        {DepartmentId = 8,
-            FirstName = "Pharmacist",
-            LastName = "Ayham",
-            UserName = "p@p2h.com",
-            NormalizedUserName = "p@p2h.com",
-            Email = "p@p2h.com",
-            NormalizedEmail = "p@p2h.com",
-            PhoneNumber = "0781227894",
-            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") ,
-            Experience = "12",
-            Gender = true,Age = 33
-        },
-        new User
-        {
-            DepartmentId = 1,
-            FirstName = "Admin",
-            LastName = "Yousef",
-            UserName = "a@p2h.com",
-            NormalizedUserName = "a@p2h.com",
-            Email = "a@p2h.com",
-            NormalizedEmail = "A@P2H.COM",
-            PhoneNumber = "0781224567",
-            PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd") ,
-            Experience = "12",
-            Gender = true,Age = 26
-        }
-    };
+        Id = Guid.NewGuid().ToString(),
+        DepartmentId = 1,
+        FirstName = "Doctor",
+        LastName = "Ahmad",
+        UserName = "d@p2h.com",
+        NormalizedUserName = "D@P2H.COM",
+        Email = "d@p2h.com",
+        NormalizedEmail = "D@P2H.COM",
+        PhoneNumber = "0781221223",
+        PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd"),
+        Experience = "12",
+        Gender = true,
+        Age = 40
+    },
+    new User
+    {
+        Id = Guid.NewGuid().ToString(),
+        DepartmentId = 1,
+        FirstName = "Nurse",
+        LastName = "Sameera",
+        UserName = "n@p2h.com",
+        NormalizedUserName = "N@P2H.COM",
+        Email = "n@p2h.com",
+        NormalizedEmail = "N@P2H.COM",
+        PhoneNumber = "0781227894",
+        PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd"),
+        Experience = "12",
+        Gender = false,
+        Age = 45
+    },
+    new User
+    {
+        Id = Guid.NewGuid().ToString(),
+        DepartmentId = 9,
+        FirstName = "Manager",
+        LastName = "Mohammad",
+        UserName = "m@p2h.com",
+        NormalizedUserName = "M@P2H.COM",
+        Email = "m@p2h.com",
+        NormalizedEmail = "M@P2H.COM",
+        PhoneNumber = "0781221244",
+        PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd"),
+        Experience = "12",
+        Gender = true,
+        Age = 40
+    },
+    new User
+    {
+        Id = Guid.NewGuid().ToString(),
+        DepartmentId = 8,
+        FirstName = "Pharmacist",
+        LastName = "Ayham",
+        UserName = "p@p2h.com",
+        NormalizedUserName = "P@P2H.COM",
+        Email = "p@p2h.com",
+        NormalizedEmail = "P@P2H.COM",
+        PhoneNumber = "0781227894",
+        PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd"),
+        Experience = "12",
+        Gender = true,
+        Age = 33
+    },
+    new User
+    {
+        Id = Guid.NewGuid().ToString(),
+        DepartmentId = 1,
+        FirstName = "Admin",
+        LastName = "Yousef",
+        UserName = "a@p2h.com",
+        NormalizedUserName = "A@P2H.COM",
+        Email = "a@p2h.com",
+        NormalizedEmail = "A@P2H.COM",
+        PhoneNumber = "0781224567",
+        PasswordHash = passwordHasher.HashPassword(null, "P@ssw0rd"),
+        Experience = "12",
+        Gender = true,
+        Age = 26
+    }
+};
             var addresses = new List<Address>
             {
                 new Address { AreaId = 1, CityId = 1, UserId = users[0].Id },
